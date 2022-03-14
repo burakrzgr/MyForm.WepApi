@@ -23,7 +23,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         [HttpGet, Route("")]
         public IEnumerable<Form> GetList()
         {
-            return (IEnumerable<Form>)(new Form[] { new Form() { Id = 1 }, new Form() { Id = 2 } });
+            return new Form[] { new Form() { Id = 1 }, new Form() { Id = 2 } };
         }
 
         [HttpPost, Route("{id}")]
