@@ -11,8 +11,8 @@ namespace Burakrzgr.MyForm.Business.Form
 {
     public class FormManager : IFormService
     {
-        IFormData _formData;
-        IQuestionData _questionData;
+        readonly IFormData _formData;
+        readonly IQuestionData _questionData;
         public FormManager(IFormData formData,IQuestionData questionData)
         {
             _formData = formData;
