@@ -1,4 +1,4 @@
-﻿namespace Burakrzgr.MyForm.Business.Model
+﻿namespace Burakrzgr.MyForm.Entity.Model
 {
     public class Option
     {

@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Business.Model;
+﻿using Burakrzgr.MyForm.Business.Form;
+using Burakrzgr.MyForm.Entity.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Burakrzgr.MyForm.WepApi.Controllers
@@ -8,16 +9,18 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
     public class FormController : ControllerBase
     {
         private readonly ILogger<FormController> _logger;
+        private readonly IFormService _formService;
 
-        public FormController(ILogger<FormController> logger)
+        public FormController(ILogger<FormController> logger, IFormService formService)
         {
             _logger = logger;
+            _formService = formService;
         }
 
         [HttpGet, Route("{id}")]
         public Form Get(int id)
         {
-            return new Form() { Id = id };
+            return _formService.GetForm(id);
         }
 
         [HttpGet, Route("")]
