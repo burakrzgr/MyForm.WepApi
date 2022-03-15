@@ -12,14 +12,18 @@ namespace Burakrzgr.MyForm.Business.Form
     public class FormManager : IFormService
     {
         IFormData _formData;
-        public FormManager(IFormData formData)
+        IQuestionData _questionData;
+        public FormManager(IFormData formData,IQuestionData questionData)
         {
             _formData = formData;
+            _questionData = questionData;
         }  
 
         public FormModel GetForm(int id)
         {
-            return _formData.GetForm(id);
+            var form = _formData.GetForm(id);
+            form.Questions = _questionData.GetQuestionWithFormId(id);
+            return form;
         }
     }
 }

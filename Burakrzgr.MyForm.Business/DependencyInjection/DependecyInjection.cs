@@ -9,8 +9,10 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
     {
         public static IServiceCollection AddDependency(this IServiceCollection services)
         {
-            services.AddScoped<IFormService, FormManager>()
-                .AddScoped<IFormData, MemFormData>();
+            services
+                .AddScoped<IFormService, FormManager>()
+                .AddScoped<IFormData, MemFormData>()
+                .AddScoped<IQuestionData, MemQuestionData>();
 
             return services;
         }
