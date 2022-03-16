@@ -20,5 +20,9 @@ namespace Burakrzgr.MyForm.Data.Memory
                 throw new ArgumentException("Cant Find Model with id" + id);
             return form;
         }
+        public IList<Form> GetFormList()
+        {
+            return Data;
+        }
     }
 }

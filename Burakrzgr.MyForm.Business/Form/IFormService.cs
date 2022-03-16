@@ -11,5 +11,6 @@ namespace Burakrzgr.MyForm.Business.Form
     public interface IFormService
     {
         public FormModel GetForm(int id);
+        public IList<FormModel> GetFormList();
     }
 }

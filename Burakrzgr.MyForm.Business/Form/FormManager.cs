@@ -25,5 +25,16 @@ namespace Burakrzgr.MyForm.Business.Form
             form.Questions = _questionData.GetQuestionWithFormId(id);
             return form;
         }
+
+        public IList<FormModel> GetFormList()
+        {
+            var form = _formData.GetFormList();
+            foreach (var item in form)
+            {
+                item.Questions = _questionData.GetQuestionWithFormId(item.Id);
+            }
+           
+            return form;
+        }
     }
 }

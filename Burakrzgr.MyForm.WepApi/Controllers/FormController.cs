@@ -26,7 +26,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         [HttpGet, Route("")]
         public IEnumerable<Form> GetList()
         {
-            return new Form[] { new Form() { Id = 1 }, new Form() { Id = 2 } };
+            return _formService.GetFormList();
         }
 
         [HttpPost, Route("{id}")]
