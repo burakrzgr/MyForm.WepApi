@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Burakrzgr.MyForm.Entity.Model;
 using FormModel = Burakrzgr.MyForm.Entity.Model.Form;
 
-namespace Burakrzgr.MyForm.Business.Form
+namespace Burakrzgr.MyForm.Business.FormTemplate
 {
     public interface IFormService
     {

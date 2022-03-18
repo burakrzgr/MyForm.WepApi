@@ -7,5 +7,6 @@
     CheckBox = 4,
     DateTime = 5,
     Rate = 6,
-    AcceptPolicy = 7
+    Upload = 7,
+    AcceptPolicy = 8
 }

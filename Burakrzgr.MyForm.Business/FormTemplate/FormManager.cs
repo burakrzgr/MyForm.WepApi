@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FormModel = Burakrzgr.MyForm.Entity.Model.Form;
 
-namespace Burakrzgr.MyForm.Business.Form
+namespace Burakrzgr.MyForm.Business.FormTemplate
 {
     public class FormManager : IFormService
     {
