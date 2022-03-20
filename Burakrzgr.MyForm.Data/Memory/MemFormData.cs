@@ -25,15 +25,5 @@ namespace Burakrzgr.MyForm.Data.Memory
         {
             return Data;
         }
-
-        Form IFormData.GetForm(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        IList<Form> IFormData.GetFormList()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
