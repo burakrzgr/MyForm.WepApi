@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Burakrzgr.MyForm.Entity.Model;
-using FormModel = Burakrzgr.MyForm.Entity.Model.Form;
+using FormModel = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {

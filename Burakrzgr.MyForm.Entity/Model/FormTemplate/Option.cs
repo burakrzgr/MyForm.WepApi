@@ -1,4 +1,4 @@
-﻿namespace Burakrzgr.MyForm.Entity.Model
+﻿namespace Burakrzgr.MyForm.Entity.Model.FormTemplate
 {
     public class Option
     {

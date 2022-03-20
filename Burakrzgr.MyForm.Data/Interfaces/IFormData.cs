@@ -1,4 +1,4 @@
-﻿using Burakrzgr.MyForm.Entity.Model;
+﻿using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {

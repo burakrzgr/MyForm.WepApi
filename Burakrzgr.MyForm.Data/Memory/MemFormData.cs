@@ -1,5 +1,6 @@
 ﻿using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Model;
+using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,16 @@ namespace Burakrzgr.MyForm.Data.Memory
         public IList<Form> GetFormList()
         {
             return Data;
+        }
+
+        Form IFormData.GetForm(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        IList<Form> IFormData.GetFormList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

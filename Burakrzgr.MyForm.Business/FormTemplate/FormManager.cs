@@ -1,11 +1,5 @@
 ﻿using Burakrzgr.MyForm.Data.Interfaces;
-using Burakrzgr.MyForm.Entity.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FormModel = Burakrzgr.MyForm.Entity.Model.Form;
+using FormModel = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {

@@ -1,4 +1,6 @@
-﻿namespace Burakrzgr.MyForm.Entity.Model
+﻿using Burakrzgr.MyForm.Entity.Model.FormTemplate;
+
+namespace Burakrzgr.MyForm.Entity.Model
 {
     public class Question
     {
@@ -8,7 +10,5 @@
         public QuestionType QuestionType { get; set; }
         public string? ReplyValue { get; set; }
         public IList<Option>? Options { get; set; }
-
-
     }
 }
