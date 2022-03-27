@@ -26,7 +26,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
                 fm.Questions = _questionTemplate.Get(id).Select(x =>_questionManager.GetQuestion(x)).ToList();
                 return fm;
             }
-            else return new FormModel { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = "error", Questions = new List<Question>() };
+            else return new FormModel { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = 0, Questions = new List<Question>() };
         }
         public IList<FormModel> GetFormList()
         {

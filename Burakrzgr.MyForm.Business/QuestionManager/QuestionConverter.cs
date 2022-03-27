@@ -1,6 +1,6 @@
 ﻿using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model;
-using Burakrzgr.MyForm.Entity.Model.Questions;
+using Burakrzgr.MyForm.Entity.Model.AnswerTemplate;
 
 namespace Burakrzgr.MyForm.Business.QuestionManager
 {
@@ -10,15 +10,17 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
         { 
             if(template != null)
             {
+                var question = new Question { Id = template.Id, FormId = template.TemplateId, QuestionText = template.QuestionText, QuestionType = (QuestionType)template.QuestionType };
                 switch ((QuestionType)template.QuestionType)
                 {
                     case QuestionType.Text:
                     case QuestionType.TextArea:
-                        return new TextQuestion { Id = template.Id, FormId = template.TemplateId, QuestionText = template.QuestionText, QuestionType = QuestionType.Text, DefaultText = template.AnswerStr1, TextHeight = template.AnswerInt1 };
-
-                    default: return new Question { Id = template.Id, FormId = template.TemplateId, QuestionText = template.QuestionText, QuestionType = (QuestionType)template.QuestionType };
-                
+                        question.AnswerArea = new TextAnswerArea {  DefaultText = template.AnswerStr1, TextHeight = template.AnswerInt1 };
+                        break;
+                    default:
+                        break;
                 }
+                return question;
             }
             else return new Question { Id = 9999, QuestionText = "Database Error!",FormId = 9999,QuestionType = QuestionType.Info };
         }
