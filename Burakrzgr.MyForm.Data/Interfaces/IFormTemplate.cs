@@ -9,7 +9,8 @@ namespace Burakrzgr.MyForm.Data.Interfaces
 {
     public interface IFormTemplate
     {
-        FormTemplate Get(int id);
+        FormTemplate? Get(int id);
         IList<FormTemplate> GetAll();
+        FormTemplate? GetWithAnswer(int id);
     }
 }

@@ -37,7 +37,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             //var form = _formData.GetForm(id);
             //form.Questions = _questionData.GetQuestionWithFormId(id);
             //return form;
-            return _formTemplate.Get(id);
+            return _formTemplate.GetWithAnswer(id);
         }
     }
 }

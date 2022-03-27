@@ -17,10 +17,15 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
         {
             _factory = factory;
         }
-        public FormTemplate Get(int id)
+        public FormTemplate? Get(int id)
         {
             FormTemplate? formTemplate = _factory.FormTemplates.SingleOrDefault(x => x.Id == id);
             return formTemplate;
+        }
+        public FormTemplate? GetWithAnswer(int id)
+        {
+            var formTemplateList = _factory.FormTemplates.Join(_factory.QuestionTemplates,x => x.Id,y => y.TemplateId,(x,y) => x ).Where(x => x.Id == id).ToList();
+            return formTemplateList.FirstOrDefault();
         }
 
         public IList<FormTemplate> GetAll()
