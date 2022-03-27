@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Burakrzgr.MyForm.Entity.Entities
+namespace Burakrzgr.MyForm.WepApi
 {
-    //Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\burak\source\repos\Burakrzgr.MyForm.WepApi\Database\DBMyForm.mdf;Integrated Security=True;Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ../Burakrzgr.MyForm.Entity/Entities
-    public partial class FormDbContext : DbContext
+    public partial class CUSERSBURAKSOURCEREPOSBURAKRZGRMYFORMWEPAPIDATABASEDBMYFORMMDFContext : DbContext
     {
-        public FormDbContext()
+        public CUSERSBURAKSOURCEREPOSBURAKRZGRMYFORMWEPAPIDATABASEDBMYFORMMDFContext()
         {
         }
 
-        public FormDbContext(DbContextOptions<FormDbContext> options)
+        public CUSERSBURAKSOURCEREPOSBURAKRZGRMYFORMWEPAPIDATABASEDBMYFORMMDFContext(DbContextOptions<CUSERSBURAKSOURCEREPOSBURAKRZGRMYFORMWEPAPIDATABASEDBMYFORMMDFContext> options)
             : base(options)
         {
         }
@@ -42,24 +41,19 @@ namespace Burakrzgr.MyForm.Entity.Entities
                 entity.Property(e => e.ChoiceText).HasMaxLength(100);
             });
 
-
             modelBuilder.Entity<FormBroadcast>(entity =>
             {
-
                 entity.ToTable("FormBroadcast");
 
                 entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<FormTemplate>(entity =>
             {
-
                 entity.ToTable("FormTemplate");
 
                 entity.Property(e => e.DateOfCreate).HasColumnType("datetime");
@@ -67,28 +61,17 @@ namespace Burakrzgr.MyForm.Entity.Entities
                 entity.Property(e => e.FormDesc).HasMaxLength(500);
 
                 entity.Property(e => e.FormName).HasMaxLength(250);
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.PersonalInfo)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
             });
 
             modelBuilder.Entity<QuestionTemplate>(entity =>
             {
-
                 entity.ToTable("QuestionTemplate");
 
                 entity.Property(e => e.AnswerStr1).HasMaxLength(250);
 
                 entity.Property(e => e.AnswerStr2).HasMaxLength(250);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.QuestionText)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.QuestionText).HasMaxLength(250);
             });
 
             modelBuilder.Entity<QuestionTemplateChoice>(entity =>
@@ -103,12 +86,9 @@ namespace Burakrzgr.MyForm.Entity.Entities
 
             modelBuilder.Entity<User>(entity =>
             {
-
                 entity.ToTable("User");
 
                 entity.Property(e => e.Email).HasMaxLength(70);
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Lastname).HasMaxLength(50);
 

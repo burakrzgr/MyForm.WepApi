@@ -1,7 +1,9 @@
 ﻿using Burakrzgr.MyForm.Business.QuestionManager;
+using Burakrzgr.MyForm.Core;
 using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Model;
-using FormModel = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
+using FormTemplateEntity = Burakrzgr.MyForm.Entity.Entities.FormTemplate;
+using FormModal = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {
@@ -18,21 +20,28 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             _formTemplate = formTemplate;
             _questionManager = questionManager;
         }
-        public FormModel GetForm(int id)
+        public FormModal GetForm(int id)
         {
             var form = _formTemplate.Get(id);
             if (form != null) {
-                FormModel fm = new FormModel { Id = form.Id, FormName = form.FormName, FormDesc = form.FormDesc, DateofCreate = form.DateOfCreate, PersonalInfo = form.PersonalInfo };
+                FormModal fm = new FormModal { Id = form.Id, FormName = form.FormName, FormDesc = form.FormDesc, DateofCreate = form.DateOfCreate, PersonalInfo = form.PersonalInfo };
                 fm.Questions = _questionTemplate.Get(id).Select(x =>_questionManager.GetQuestion(x)).ToList();
                 return fm;
             }
-            else return new FormModel { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = 0, Questions = new List<Question>() };
+            else return new FormModal { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = 0, Questions = new List<Question>() };
         }
-        public IList<FormModel> GetFormList()
+        public IList<FormModal> GetFormList()
         {
             var form = _formTemplate.GetAll();
            
-            return form.Select(x => new FormModel { Id = x.Id, FormName = x.FormName, FormDesc = x.FormDesc, DateofCreate = x.DateOfCreate, PersonalInfo = x.PersonalInfo }).ToList();
+            return form.Select(x => new FormModal { Id = x.Id, FormName = x.FormName, FormDesc = x.FormDesc, DateofCreate = x.DateOfCreate, PersonalInfo = x.PersonalInfo }).ToList();
+        }
+
+        public IResult<FormModal> PutForm(FormModal form)
+        {
+            IResult<FormTemplateEntity>? result = _formTemplate.Add(new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc, DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
+            form.Id = result.Data is null ? 0 : result.Data.Id;
+            return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message);
         }
     }
 }

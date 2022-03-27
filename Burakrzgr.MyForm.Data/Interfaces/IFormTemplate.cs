@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Entity.Entities;
+﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
         FormTemplate? Get(int id);
         IList<FormTemplate> GetAll();
         FormTemplate? GetWithAnswer(int id);
+        IResult<FormTemplate> Add(FormTemplate form);
     }
 }

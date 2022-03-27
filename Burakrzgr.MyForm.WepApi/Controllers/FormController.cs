@@ -36,8 +36,14 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             return id == 5 ;
         }
         [HttpPut, Route("")]
-        public bool Put()
+        public bool Put(Form form)
         {
+            if (form is null)
+            {
+                return false;
+            }
+            _formService.PutForm(form);
+
             return true;
         }
         [HttpPatch, Route("{id}")]

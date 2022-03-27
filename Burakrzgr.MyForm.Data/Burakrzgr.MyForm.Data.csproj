@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Burakrzgr.MyForm.Core\Burakrzgr.MyForm.Core.csproj" />
     <ProjectReference Include="..\Burakrzgr.MyForm.Entity\Burakrzgr.MyForm.Entity.csproj" />
   </ItemGroup>
 

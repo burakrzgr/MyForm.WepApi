@@ -1,6 +1,8 @@
-﻿using Burakrzgr.MyForm.Data.Interfaces;
+﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -33,5 +35,12 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             IList<FormTemplate> formTemplateList = _factory.FormTemplates.ToList();
             return formTemplateList;
         }
+        public IResult<FormTemplate> Add(FormTemplate form)
+        {
+            EntityEntry<FormTemplate>? result = _factory.FormTemplates.Add(form);
+            _factory.SaveChanges();
+            return result.State == EntityState.Added ? new SuccessResult<FormTemplate>(result.Entity) : new ErrorResult<FormTemplate>(result.Entity, "Db Error");
+        }
+
     }
 }
