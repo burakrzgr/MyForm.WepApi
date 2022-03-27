@@ -1,4 +1,5 @@
 ﻿using Burakrzgr.MyForm.Business.FormTemplate;
+using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,13 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         }
 
         [HttpGet, Route("{id}")]
-        public Form Get(int id)
+        public FormTemplate Get(int id)
         {
-            return _formService.GetForm(id);
+            return _formService.GetFormTemplate(id);
         }
 
         [HttpGet, Route("")]
-        public IEnumerable<Form> GetList()
+        public IEnumerable<Entity.Model.FormTemplate.FormTemplate.Form> GetList()
         {
             return _formService.GetFormList();
         }

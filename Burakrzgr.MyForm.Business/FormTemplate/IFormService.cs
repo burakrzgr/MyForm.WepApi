@@ -12,5 +12,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
     {
         public FormModel GetForm(int id);
         public IList<FormModel> GetFormList();
+        public Entity.Entities.FormTemplate GetFormTemplate(int id);
+
     }
 }
