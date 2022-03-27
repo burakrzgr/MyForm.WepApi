@@ -8,7 +8,7 @@
         public string? FormDesc { get; set; }
         public string? PersonalInfo { get; set; }
         public DateTime? DateofCreate { get; set; }
-        public List<Question>? Questions { get; set; }
+        public IList<Question>? Questions { get; set; }
 
     }
 }

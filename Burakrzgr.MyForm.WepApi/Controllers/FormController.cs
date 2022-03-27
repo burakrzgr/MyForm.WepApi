@@ -19,13 +19,13 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         }
 
         [HttpGet, Route("{id}")]
-        public FormTemplate Get(int id)
+        public Form Get(int id)
         {
-            return _formService.GetFormTemplate(id);
+            return _formService.GetForm(id);
         }
 
         [HttpGet, Route("")]
-        public IEnumerable<Entity.Model.FormTemplate.FormTemplate.Form> GetList()
+        public IEnumerable<Form> GetList()
         {
             return _formService.GetFormList();
         }

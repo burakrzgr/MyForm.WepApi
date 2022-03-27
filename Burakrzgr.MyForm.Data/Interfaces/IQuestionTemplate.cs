@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Entity.Model;
+﻿using Burakrzgr.MyForm.Entity.Entities;
+using Burakrzgr.MyForm.Entity.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {
-    public interface IQuestionData
+    public interface IQuestionTemplate
     {
-        Question GetQuestion(int id);
-        List<Question>? GetQuestionWithFormId(int formId);
+        IList<QuestionTemplate> Get(int templateId);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Burakrzgr.MyForm.Business.FormTemplate;
+using Burakrzgr.MyForm.Business.QuestionManager;
 using Burakrzgr.MyForm.Data.EntityFramework;
 using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Data.Memory;
@@ -14,10 +15,12 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
             services
                 .AddScoped<IFormService, FormManager>()
                 .AddScoped<IFormData, MemFormData>()
-                .AddScoped<IQuestionData, MemQuestionData>()
+                .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
                 .AddScoped<IFormTemplate, EfFormTemplate>();
 
-            services.AddSingleton<FormDbContext>();
+            services
+                .AddSingleton<FormDbContext>()
+                .AddSingleton<QuestionConverter>();
             return services;
         }
 

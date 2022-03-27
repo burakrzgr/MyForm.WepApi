@@ -1,12 +1,13 @@
 ﻿public enum QuestionType
 {
-    Text = 0,
-    TextArea = 1,
-    RadioButton = 2,
-    ComboBox = 3,
-    CheckBox = 4,
-    DateTime = 5,
-    Rate = 6,
-    Upload = 7,
-    AcceptPolicy = 8
+    Text = 1,
+    TextArea = 2,
+    RadioButton = 3,
+    ComboBox = 4,
+    CheckBox = 5,
+    DateTime = 6,
+    Rate = 7,
+    Upload = 8,
+    AcceptPolicy = 9,
+    Info = 10,
 }
