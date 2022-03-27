@@ -39,9 +39,10 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 
         public IResult<FormModal> PutForm(FormModal form)
         {
-            IResult<FormTemplateEntity>? result = _formTemplate.Add(new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc, DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
+            IResult<FormTemplateEntity>? result = _formTemplate.Add(form: new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc ?? "", DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
             form.Id = result.Data is null ? 0 : result.Data.Id;
-            return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message);
+            _questionTemplate.Add(form.Questions.Select(x => _questionManager.GetTemplate(x,form.Id)).ToList());
+            return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message ?? "");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Entity.Entities;
+﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     public interface IQuestionTemplate
     {
         IList<QuestionTemplate> Get(int templateId);
+        IResult<string> Add(IList<QuestionTemplate>? questions);
     }
 }
