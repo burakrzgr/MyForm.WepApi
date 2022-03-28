@@ -36,11 +36,34 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                 {
                     case QuestionType.Text:
                     case QuestionType.TextArea:
-                        template.AnswerStr1 = question.AnswerArea.DefaultText;
-                        template.AnswerInt1 = question.AnswerArea.TextHeight;
+                        template.AnswerStr1 = question.AnswerArea?.defaultText;
+                        template.AnswerInt1 = question.AnswerArea?.textHeight;
+                        break;
+                    case QuestionType.RadioButton:
+                        template.AnswerBool1 = question.AnswerArea?.multi;
+                        break;
+                    case QuestionType.ComboBox:
+                        break;
+                    case QuestionType.CheckBox:
+                    case QuestionType.AcceptPolicy:
+                        template.AnswerBool1 = question.AnswerArea?.defaultChecked;
+                        template.AnswerStr1 = question.AnswerArea?.checkText ?? "";
+                        template.AnswerStr2 = question.AnswerArea?.description ?? "";
+                        break;
+                    case QuestionType.DateTime:
+                        template.AnswerBool1 = question?.AnswerArea?.checkDate;
+                        template.AnswerBool2 = question?.AnswerArea?.checkTime;
+                        break;
+                    case QuestionType.Rate:
+                        template.AnswerInt1 = question?.AnswerArea?.stars;
+                        break;
+                    case QuestionType.Upload:
+                        break;
+                    case QuestionType.Info:
+                        template.AnswerStr1 = question?.AnswerArea?.variant;
+                        template.AnswerBool1 = question?.AnswerArea?.dismissive;
                         break;
                     default:
-                        
                         break;
                 }
                 return template;
