@@ -2,6 +2,7 @@
 using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model;
+using Burakrzgr.MyForm.Entity.Model.FormTemplate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,13 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             }
         }
 
-        public IResult<int> MergeOptions(IQuestionTemplate[] templates)
+        public IResult<int> MergeOptions(OptionAnswerMerge[] templates)
         {
-            throw new NotImplementedException();
+            var dbChoices = _factory.Choices;
+            IList<QuestionTemplateChoice> choicestemplates = templates.SelectMany(x => x.Options.Select(y => new { Id = x.Question.Id, option = y })).Join(dbChoices, x => x.option, y => y.ChoiceText, (x, y) => new QuestionTemplateChoice { ChoiceId = y.Id, QuestionTemplateId = x.Id }).ToList<QuestionTemplateChoice>();
+            _factory.QuestionTemplateChoices.AddRange(choicestemplates);
+            _factory.SaveChanges();
+            return new SuccessResult<int>(choicestemplates.Count);
         }
     }
 }
