@@ -9,14 +9,12 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 {
     public class FormManager : IFormService
     {
-        readonly IFormData _formData;
         readonly IQuestionTemplate _questionTemplate;
         readonly IFormTemplate _formTemplate;
         
         readonly QuestionConverter _questionManager;
-        public FormManager(IFormData formData,IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
+        public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
         {
-            _formData = formData;
             _questionTemplate = questionTemplate;
             _formTemplate = formTemplate;
             _questionManager = questionManager;
