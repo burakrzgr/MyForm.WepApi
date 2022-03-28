@@ -20,7 +20,18 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
 
         public IResult<int> AddOptions(string[] options)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var dbChoices = _factory.Choices;
+                IList<Choice> choices = options.Where(x => !dbChoices.Any(y => y.ChoiceText == x)).Select(x => new Choice { ChoiceText = x }).ToList<Choice>();
+                _factory.Choices.AddRange(choices);
+                _factory.SaveChanges();
+                return new SuccessResult<int>(choices.Count);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult<int>(0, "Db Error");
+            }
         }
 
         public IResult<int> MergeOptions(IQuestionTemplate[] templates)
