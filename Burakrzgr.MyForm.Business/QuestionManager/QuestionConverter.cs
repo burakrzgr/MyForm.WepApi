@@ -18,6 +18,26 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                     case QuestionType.TextArea:
                         question.AnswerArea = new TextAnswerArea { DefaultText = template.AnswerStr1, TextHeight = template.AnswerInt1 };
                         break;
+                    case QuestionType.RadioButton:
+                    case QuestionType.ComboBox:
+                        question.AnswerArea = new OptionsAnswerArea { Options = new string[]{}, Multi = template.AnswerBool1?? false };
+                        break;
+                    case QuestionType.CheckBox:
+                    case QuestionType.AcceptPolicy:
+                        question.AnswerArea = new CheckAnswerArea { DefaultChecked = template.AnswerBool1??false, CheckText = template.AnswerStr1??"", Description = template.AnswerStr2??"" };
+                        break;
+                    case QuestionType.DateTime:
+                        question.AnswerArea = new DateTimeAnswerArea { CheckDate = template.AnswerBool1??false, CheckTime = template.AnswerBool2??false };
+                        break;
+                    case QuestionType.Rate:
+                        question.AnswerArea = new RateAnswerArea { Stars = template.AnswerInt1 ?? 5 };
+                        break;
+                    case QuestionType.Upload:
+                        break;
+                    case QuestionType.Info:
+                        question.AnswerArea = new InfoArea { Variant = template.AnswerStr1 ?? "info", Dismissive = template.AnswerBool1 ?? false };
+                        break;
+
                     default:
                         question.AnswerArea = new { };
                         break;
