@@ -12,8 +12,9 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         readonly IFormData _formData;
         readonly IQuestionTemplate _questionTemplate;
         readonly IFormTemplate _formTemplate;
+        
         readonly QuestionConverter _questionManager;
-        public FormManager(IFormData formData,IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager)
+        public FormManager(IFormData formData,IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
         {
             _formData = formData;
             _questionTemplate = questionTemplate;
@@ -42,6 +43,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             IResult<FormTemplateEntity>? result = _formTemplate.Add(form: new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc ?? "", DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
             form.Id = result.Data is null ? 0 : result.Data.Id;
             _questionTemplate.Add(form.Questions.Select(x => _questionManager.GetTemplate(x,form.Id)).ToList());
+
             return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message ?? "");
         }
     }
