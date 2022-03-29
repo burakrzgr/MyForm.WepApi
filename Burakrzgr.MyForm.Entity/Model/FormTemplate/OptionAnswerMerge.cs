@@ -8,7 +8,7 @@ namespace Burakrzgr.MyForm.Entity.Model.FormTemplate
 {
     public class OptionAnswerMerge
     {
-        public Question Question { get; set; }
+        public int QuestionId { get; set; }
         public string[] Options { get; set; }
     }
 }

@@ -93,7 +93,7 @@ namespace Burakrzgr.MyForm.Entity.Entities
 
             modelBuilder.Entity<QuestionTemplateChoice>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.QuestionTemplateId, e.ChoiceId });
 
                 entity.ToTable("QuestionTemplate_Choice");
 

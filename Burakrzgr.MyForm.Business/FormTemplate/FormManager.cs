@@ -15,6 +15,9 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         readonly IOptionsTemplate _optionsTemplate;
         
         readonly QuestionConverter _questionManager;
+
+        readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox };
+
         public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
         {
             _questionTemplate = questionTemplate;
@@ -27,7 +30,13 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             var form = _formTemplate.Get(id);
             if (form != null) {
                 FormModal fm = new FormModal { Id = form.Id, FormName = form.FormName, FormDesc = form.FormDesc, DateofCreate = form.DateOfCreate, PersonalInfo = form.PersonalInfo };
-                fm.Questions = _questionTemplate.Get(id).Select(x =>_questionManager.GetQuestion(x)).ToList();
+                var questionTemplateList = _questionTemplate.Get(id);
+                fm.Questions = questionTemplateList.Select(x => _questionManager.GetQuestion(x)).ToList();
+                var selectionQuestion = questionTemplateList.Where(x => _choiceQuestions.Contains(x.QuestionType)).ToList();
+
+
+
+
                 return fm;
             }
             else return new FormModal { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = 0, Questions = new List<Question>() };
@@ -43,11 +52,13 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         {
             IResult<FormTemplateEntity>? result = _formTemplate.Add(form: new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc ?? "", DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
             form.Id = result.Data is null ? 0 : result.Data.Id;
-            var inserted = _questionTemplate.Add(form.Questions.Select(x => _questionManager.GetTemplate(x, form.Id)).ToList());
-            QuestionType[] choiceQuestions = new QuestionType[] { QuestionType.RadioButton, QuestionType.ComboBox };
-            IList<OptionAnswerMerge> merge = form.Questions.Where(x => choiceQuestions.Contains(x.QuestionType)).Select(x => new OptionAnswerMerge { Question = x, Options = x.AnswerArea?.options.ToObject<string[]>() ?? Array.Empty<string>() }).ToList();
+            var inserted = _questionTemplate.Add(form.Questions?.Select(x => _questionManager.GetTemplate(x, form.Id)).ToList());
+
+            IList<OptionAnswerMerge> merge = inserted.Data?.Where(x => _choiceQuestions.Contains(x.QuestionType)).Select(x => new OptionAnswerMerge { QuestionId = x.Id, Options = x.StrArray ?? Array.Empty<string>() }).ToList() ?? new List<OptionAnswerMerge>();
             _ = _optionsTemplate.AddOptions(merge.SelectMany(x => x.Options).ToArray());
             _ = _optionsTemplate.MergeOptions(merge.ToArray());
+
+
             //_optionsTemplate.AddOptions(form.Questions.)
             return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message ?? "");
         }

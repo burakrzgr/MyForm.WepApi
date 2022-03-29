@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Burakrzgr.MyForm.Entity.Entities
 {
@@ -14,5 +15,7 @@ namespace Burakrzgr.MyForm.Entity.Entities
         public bool? AnswerBool1 { get; set; }
         public bool? AnswerBool2 { get; set; }
         public int? AnswerInt1 { get; set; }
+        [NotMapped]
+        public string[]? StrArray { get; set; }
     }
 }

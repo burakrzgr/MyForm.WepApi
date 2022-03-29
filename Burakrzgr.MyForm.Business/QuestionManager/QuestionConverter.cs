@@ -20,7 +20,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         break;
                     case QuestionType.RadioButton:
                     case QuestionType.ComboBox:
-                        question.AnswerArea = new OptionsAnswerArea { Options = new string[]{}, Multi = template.AnswerBool1?? false };
+                        question.AnswerArea = new OptionsAnswerArea { Options = template.StrArray, Multi = template.AnswerBool1?? false };
                         break;
                     case QuestionType.CheckBox:
                     case QuestionType.AcceptPolicy:
@@ -61,8 +61,10 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         break;
                     case QuestionType.RadioButton:
                         template.AnswerBool1 = question.AnswerArea?.multi;
+                        template.StrArray = question.AnswerArea?.options.ToObject<string[]>();
                         break;
                     case QuestionType.ComboBox:
+                        template.StrArray = question.AnswerArea?.options.ToObject<string[]>();
                         break;
                     case QuestionType.CheckBox:
                     case QuestionType.AcceptPolicy:
@@ -78,6 +80,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         template.AnswerInt1 = question?.AnswerArea?.stars;
                         break;
                     case QuestionType.Upload:
+                        template.StrArray = question.AnswerArea?.fileTypes.ToObject<string[]>();
                         break;
                     case QuestionType.Info:
                         template.AnswerStr1 = question?.AnswerArea?.variant;

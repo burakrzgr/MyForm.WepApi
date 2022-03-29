@@ -12,6 +12,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     public interface IQuestionTemplate
     {
         IList<QuestionTemplate> Get(int templateId);
-        IResult<string> Add(IList<QuestionTemplate>? questions);
+        IResult<IList<QuestionTemplate>> Add(IList<QuestionTemplate>? questions);
     }
 }
