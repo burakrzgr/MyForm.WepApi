@@ -33,6 +33,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         question.AnswerArea = new RateAnswerArea { Stars = template.AnswerInt1 ?? 5 };
                         break;
                     case QuestionType.Upload:
+                        question.AnswerArea = new UploadArea { FileTypes = template.StrArray ?? Array.Empty<string>() };
                         break;
                     case QuestionType.Info:
                         question.AnswerArea = new InfoArea { Variant = template.AnswerStr1 ?? "info", Dismissive = template.AnswerBool1 ?? false };

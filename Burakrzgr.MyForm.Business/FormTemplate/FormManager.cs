@@ -16,7 +16,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         
         readonly QuestionConverter _questionManager;
 
-        readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox };
+        readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload};
 
         public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
         {
