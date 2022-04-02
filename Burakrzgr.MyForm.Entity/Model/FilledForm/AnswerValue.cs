@@ -9,6 +9,6 @@ namespace Burakrzgr.MyForm.Entity.Model.FilledForm
 {
     public class AnswerValue
     {
-        public QuestionTemplate questionTemplate { get; set; }
+        public QuestionTemplate QuestionTemplate { get; set; }
     }
 }
