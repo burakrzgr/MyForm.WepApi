@@ -9,6 +9,6 @@ namespace Burakrzgr.MyForm.Entity.Model.FilledForm
         public DateTime FillDate { get; set; }
         public bool IsComplete { get; set; }
         public bool PersonelInfoShared { get; set; }
-        public IList<AnswerValue> answers { get; set; }
+        public IList<AnswerValue> Answers { get; set; }
     }
 }

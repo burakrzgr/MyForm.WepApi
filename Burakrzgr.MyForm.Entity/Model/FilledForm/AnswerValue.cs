@@ -10,7 +10,7 @@ namespace Burakrzgr.MyForm.Entity.Model.FilledForm
     public class AnswerValue
     {
         public QuestionTemplate QuestionTemplate { get; set; }
-        public string TextValue { get; set; }
-        
+        public string? TextValue { get; set; }
+
     }
 }
