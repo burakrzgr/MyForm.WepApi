@@ -1,4 +1,6 @@
-﻿using Burakrzgr.MyForm.Business.FormTemplate;
+﻿using Burakrzgr.MyForm.Business.FilledForm;
+using Burakrzgr.MyForm.Business.FormTemplate;
+using Burakrzgr.MyForm.Entity.Model.FilledForm;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +11,9 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
     public class FillFormController : Controller
     {
         private readonly ILogger<FormController> _logger;
-        private readonly IFormService _formService;
+        private readonly IFilledFormService _formService;
 
-        public FillFormController(ILogger<FormController> logger, IFormService formService)
+        public FillFormController(ILogger<FormController> logger, IFilledFormService formService)
         {
             _logger = logger;
             _formService = formService;
@@ -20,13 +22,26 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         [HttpGet, Route("{id}")]
         public Form Get(int id)
         {
-            return _formService.GetForm(id);
+            return null;
+            //return _formService.GetForm(id);
         }
 
         [HttpGet, Route("")]
         public IEnumerable<Form> GetList()
         {
-            return _formService.GetFormList();
+            return null;
+            //return _formService.GetFormList();
+        }
+        [HttpPut, Route("")]
+        public bool Put(FilledForm form)
+        {
+            if (form is null)
+            {
+                return false;
+            }
+            var result = _formService.SaveForm(form);
+
+            return result;
         }
     }
 }
