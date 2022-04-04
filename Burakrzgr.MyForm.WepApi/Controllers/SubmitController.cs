@@ -8,12 +8,12 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
 {  
     [ApiController]
     [Route("[controller]")]
-    public class FillFormController : Controller
+    public class SubmitController : Controller
     {
         private readonly ILogger<FormController> _logger;
         private readonly IFilledFormService _formService;
 
-        public FillFormController(ILogger<FormController> logger, IFilledFormService formService)
+        public SubmitController(ILogger<FormController> logger, IFilledFormService formService)
         {
             _logger = logger;
             _formService = formService;
@@ -33,7 +33,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             //return _formService.GetFormList();
         }
         [HttpPut, Route("")]
-        public bool Put(FilledForm form)
+        public bool Put(SubmitedForm form)
         {
             if (form is null)
             {

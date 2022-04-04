@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Entity.Model.FilledForm
 {
-    public class AnswerValue
+    public class SubmittedQuestion
     {
-        public QuestionTemplate QuestionTemplate { get; set; }
-        public string? TextValue { get; set; }
+        public int? Id { get; set; }
+        public int TemplateId { get; set; }
+        public dynamic? AnsweredValue { get; set; }
 
     }
 }

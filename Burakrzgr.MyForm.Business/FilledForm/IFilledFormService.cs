@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FilledFormModel = Burakrzgr.MyForm.Entity.Model.FilledForm.FilledForm;
+using FilledFormModel = Burakrzgr.MyForm.Entity.Model.FilledForm.SubmitedForm;
 
 
 namespace Burakrzgr.MyForm.Business.FilledForm
