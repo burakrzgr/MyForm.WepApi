@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Burakrzgr.MyForm.Entity.Entities
 {
-    //Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\burak\source\repos\Burakrzgr.MyForm.WepApi\Database\DBMyForm.mdf;Integrated Security=True;Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ../Burakrzgr.MyForm.Entity/Entities
     public partial class FormDbContext : DbContext
     {
+        //Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\burak\source\repos\Burakrzgr.MyForm.WepApi\Database\DBMyForm.mdf;Integrated Security=True;Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -OutputDir ../Burakrzgr.MyForm.Entity/Entities -force
         public FormDbContext()
         {
         }
@@ -22,6 +22,10 @@ namespace Burakrzgr.MyForm.Entity.Entities
         public virtual DbSet<FormTemplate> FormTemplates { get; set; } = null!;
         public virtual DbSet<QuestionTemplate> QuestionTemplates { get; set; } = null!;
         public virtual DbSet<QuestionTemplateChoice> QuestionTemplateChoices { get; set; } = null!;
+        public virtual DbSet<SubmittedForm> SubmitedForms { get; set; } = null!;
+        public virtual DbSet<SubmittedQuestionChoice> SubmitedQuestionChoices { get; set; } = null!;
+        public virtual DbSet<SubmittedQuestion> SubmittedQuestions { get; set; } = null!;
+        public virtual DbSet<UploadedFile> UploadedFiles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -42,24 +46,19 @@ namespace Burakrzgr.MyForm.Entity.Entities
                 entity.Property(e => e.ChoiceText).HasMaxLength(100);
             });
 
-
             modelBuilder.Entity<FormBroadcast>(entity =>
             {
-
                 entity.ToTable("FormBroadcast");
 
                 entity.Property(e => e.CreateDate).HasColumnType("datetime");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<FormTemplate>(entity =>
             {
-
                 entity.ToTable("FormTemplate");
 
                 entity.Property(e => e.DateOfCreate).HasColumnType("datetime");
@@ -67,28 +66,13 @@ namespace Burakrzgr.MyForm.Entity.Entities
                 entity.Property(e => e.FormDesc).HasMaxLength(500);
 
                 entity.Property(e => e.FormName).HasMaxLength(250);
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.PersonalInfo)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
             });
 
             modelBuilder.Entity<QuestionTemplate>(entity =>
             {
-
                 entity.ToTable("QuestionTemplate");
 
-                entity.Property(e => e.AnswerStr1).HasMaxLength(250);
-
-                entity.Property(e => e.AnswerStr2).HasMaxLength(250);
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.QuestionText)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                entity.Property(e => e.QuestionText).HasMaxLength(250);
             });
 
             modelBuilder.Entity<QuestionTemplateChoice>(entity =>
@@ -101,14 +85,44 @@ namespace Burakrzgr.MyForm.Entity.Entities
                     .IsUnique();
             });
 
+            modelBuilder.Entity<SubmittedForm>(entity =>
+            {
+                entity.ToTable("SubmitedForm");
+            });
+
+            modelBuilder.Entity<SubmittedQuestionChoice>(entity =>
+            {
+                entity.HasKey(e => new { e.SubmitedQuestionId, e.ChoiceId });
+
+                entity.ToTable("SubmitedQuestion_Choice");
+
+                entity.HasIndex(e => new { e.SubmitedQuestionId, e.ChoiceId }, "SubmitedQuestion_Choice_unique")
+                    .IsUnique();
+            });
+
+            modelBuilder.Entity<SubmittedQuestion>(entity =>
+            {
+                entity.ToTable("SubmittedQuestion");
+            });
+
+            modelBuilder.Entity<UploadedFile>(entity =>
+            {
+                entity.ToTable("UploadedFile");
+
+                entity.Property(e => e.Extension).HasMaxLength(10);
+
+                entity.Property(e => e.FileName).HasMaxLength(100);
+
+                entity.Property(e => e.UploadedFile1)
+                    .HasMaxLength(250)
+                    .HasColumnName("UploadedFile");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
-
                 entity.ToTable("User");
 
                 entity.Property(e => e.Email).HasMaxLength(70);
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Lastname).HasMaxLength(50);
 

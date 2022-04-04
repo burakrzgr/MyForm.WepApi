@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Entity.Model.FilledForm
 {
-    public class SubmittedQuestion
+    public class SubmittedQuestionModel
     {
         public int? Id { get; set; }
         public int TemplateId { get; set; }

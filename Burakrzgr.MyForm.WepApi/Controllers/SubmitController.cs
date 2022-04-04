@@ -33,7 +33,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             //return _formService.GetFormList();
         }
         [HttpPut, Route("")]
-        public bool Put(SubmitedForm form)
+        public bool Put(SubmitedFormModel form)
         {
             if (form is null)
             {

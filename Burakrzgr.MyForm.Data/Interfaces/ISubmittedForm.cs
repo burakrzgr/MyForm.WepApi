@@ -1,4 +1,5 @@
 ﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model.FilledForm;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {
-    public interface ISubmitedForm
+    public interface ISubmittedForm
     {
-        IResult<SubmitedForm> Add(SubmitedForm form);
+        IResult<SubmittedForm> Add(SubmittedForm form);
     }
 }
