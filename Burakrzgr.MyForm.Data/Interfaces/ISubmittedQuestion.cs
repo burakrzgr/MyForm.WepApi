@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Entity.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {
-    internal interface ISubmittedQuestion
+    public interface ISubmittedQuestion
     {
+        public IResult<IList<SubmittedQuestion>> Add(IList<SubmittedQuestion>? questions);
     }
 }

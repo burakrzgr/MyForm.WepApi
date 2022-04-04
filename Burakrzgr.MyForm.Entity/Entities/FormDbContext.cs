@@ -22,8 +22,8 @@ namespace Burakrzgr.MyForm.Entity.Entities
         public virtual DbSet<FormTemplate> FormTemplates { get; set; } = null!;
         public virtual DbSet<QuestionTemplate> QuestionTemplates { get; set; } = null!;
         public virtual DbSet<QuestionTemplateChoice> QuestionTemplateChoices { get; set; } = null!;
-        public virtual DbSet<SubmittedForm> SubmitedForms { get; set; } = null!;
-        public virtual DbSet<SubmittedQuestionChoice> SubmitedQuestionChoices { get; set; } = null!;
+        public virtual DbSet<SubmittedForm> SubmittedForms { get; set; } = null!;
+        public virtual DbSet<SubmittedQuestionChoice> SubmittedQuestionChoices { get; set; } = null!;
         public virtual DbSet<SubmittedQuestion> SubmittedQuestions { get; set; } = null!;
         public virtual DbSet<UploadedFile> UploadedFiles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;

@@ -17,7 +17,9 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
                 .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
                 .AddScoped<IFormTemplate, EfFormTemplate>()
                 .AddScoped<IOptionsTemplate, EfOptionsTemplate>()
-                .AddScoped<IFilledFormService, FilledFormManager>();
+                .AddScoped<IFilledFormService, FilledFormManager>()
+                .AddScoped<ISubmittedForm, EfSubmittedForm>()
+                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>();
 
             services
                 .AddSingleton<FormDbContext>()
