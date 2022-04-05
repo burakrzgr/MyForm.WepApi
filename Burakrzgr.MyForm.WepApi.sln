@@ -16,8 +16,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{4B18DFD5-27DB-4BF6-94F6-2A7978F52972}"
 	ProjectSection(SolutionItems) = preProject
 		Database\CreateScript.sql = Database\CreateScript.sql
-		Database\DBMyForm.mdf = Database\DBMyForm.mdf
-		Database\DBMyForm_log.ldf = Database\DBMyForm_log.ldf
 	EndProjectSection
 EndProject
 Global
