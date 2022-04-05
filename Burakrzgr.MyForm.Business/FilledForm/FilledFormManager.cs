@@ -44,10 +44,9 @@ namespace Burakrzgr.MyForm.Business.FilledForm
                     int id = form.Data?.Id??0;
                     IList<SubmittedQuestion> questions = filledForm.Questions?.Where(x => x.QuestionType != QuestionType.Info).Select(x => _converter.GetSubmitted(x, id)).ToList()?? new List<SubmittedQuestion>();
                     _ = _submittedQuestion.Add(questions);
-                    OptionAnswerMerge[]? list = questions.Select(x => new OptionAnswerMerge { QuestionId = x.Id, Options = x.Choices ?? Array.Empty<string>() }).ToArray();
+                    OptionAnswerMerge[]? list = questions.Where(x => x.Choices != null ?(x.Choices.Length > 0):false).Select(x => new OptionAnswerMerge { QuestionId = x.Id, Options = x.Choices ?? Array.Empty<string>() }).ToArray();
                     _optionsTemplate.InsertOptionsToQuestion(list);
                 }
-
             }
             catch (Exception ex)
             {

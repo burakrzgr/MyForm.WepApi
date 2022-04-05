@@ -14,8 +14,6 @@ namespace Burakrzgr.MyForm.Entity.Model.SubmittedForm
         public int TemplateId { get; set; }
         public QuestionType QuestionType { get; set; }
         public dynamic? AnsweredValue { get; set; }
-        //[NotMapped]
-        public string[] Choices { get; set; }
 
     }
 }
