@@ -1,7 +1,7 @@
 ﻿using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model;
 using Burakrzgr.MyForm.Entity.Model.AnswerTemplate;
-using Burakrzgr.MyForm.Entity.Model.FilledForm;
+using Burakrzgr.MyForm.Entity.Model.SubmittedForm;
 using Newtonsoft.Json;
 
 namespace Burakrzgr.MyForm.Business.QuestionManager

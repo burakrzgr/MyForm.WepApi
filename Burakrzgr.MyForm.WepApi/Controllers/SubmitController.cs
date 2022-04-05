@@ -1,6 +1,6 @@
 ﻿using Burakrzgr.MyForm.Business.FilledForm;
 using Burakrzgr.MyForm.Business.FormTemplate;
-using Burakrzgr.MyForm.Entity.Model.FilledForm;
+using Burakrzgr.MyForm.Entity.Model.SubmittedForm;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,10 +20,10 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         }
 
         [HttpGet, Route("{id}")]
-        public Form Get(int id)
+        public SubmitedFormModel Get(int id)
         {
-            return null;
-            //return _formService.GetForm(id);
+            var result = _formService.GetForm(id);
+            return result;
         }
 
         [HttpGet, Route("")]

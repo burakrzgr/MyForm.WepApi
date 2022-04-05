@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Burakrzgr.MyForm.Entity.Model.FilledForm
+namespace Burakrzgr.MyForm.Entity.Model.SubmittedForm
 {
     public class SubmittedQuestionModel
     {

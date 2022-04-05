@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Burakrzgr.MyForm.Business.QuestionManager;
 using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Entities;
-using Burakrzgr.MyForm.Entity.Model.FilledForm;
+using Burakrzgr.MyForm.Entity.Model.SubmittedForm;
 
 namespace Burakrzgr.MyForm.Business.FilledForm
 {
@@ -23,6 +23,12 @@ namespace Burakrzgr.MyForm.Business.FilledForm
             _submittedQuestion = submittedQuestion;
             _converter = converter;
         }
+
+        public SubmitedFormModel GetForm(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SaveForm(SubmitedFormModel filledForm)
         {
             try

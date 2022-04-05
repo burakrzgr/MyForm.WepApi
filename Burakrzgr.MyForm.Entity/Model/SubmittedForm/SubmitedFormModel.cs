@@ -1,6 +1,6 @@
 ﻿using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 
-namespace Burakrzgr.MyForm.Entity.Model.FilledForm
+namespace Burakrzgr.MyForm.Entity.Model.SubmittedForm
 {
     public class SubmitedFormModel
     {
