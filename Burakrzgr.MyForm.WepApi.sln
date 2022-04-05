@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burakrzgr.MyForm.Data", "Bu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burakrzgr.MyForm.Entity", "Burakrzgr.MyForm.Entity\Burakrzgr.MyForm.Entity.csproj", "{79287BC2-1DD1-4C48-9535-C3E37CCD3595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Burakrzgr.MyForm.Core", "Burakrzgr.MyForm.Core\Burakrzgr.MyForm.Core.csproj", "{C5D8E87F-A798-464D-9E04-EDEE9269A049}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Burakrzgr.MyForm.Core", "Burakrzgr.MyForm.Core\Burakrzgr.MyForm.Core.csproj", "{C5D8E87F-A798-464D-9E04-EDEE9269A049}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{4B18DFD5-27DB-4BF6-94F6-2A7978F52972}"
+	ProjectSection(SolutionItems) = preProject
+		Database\DBMyForm.mdf = Database\DBMyForm.mdf
+		Database\DBMyForm_log.ldf = Database\DBMyForm_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
