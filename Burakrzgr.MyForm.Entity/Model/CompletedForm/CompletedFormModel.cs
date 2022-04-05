@@ -10,8 +10,8 @@ namespace Burakrzgr.MyForm.Entity.Model.CompletedForm
     public class CompletedFormModel
     {
         public int Id { get; set; }
-        public string FormName { get; set; }
-        public string FormDesc { get; set; }
+        public string? FormName { get; set; }
+        public string? FormDesc { get; set; }
         public DateTime SubmitDate { get; set; } 
         public UserModel? CreatorUser { get; set; }
         public UserModel? SubmitterUser { get; set; }
