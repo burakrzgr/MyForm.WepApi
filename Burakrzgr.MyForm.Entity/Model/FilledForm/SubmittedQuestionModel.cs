@@ -11,6 +11,7 @@ namespace Burakrzgr.MyForm.Entity.Model.FilledForm
     {
         public int? Id { get; set; }
         public int TemplateId { get; set; }
+        public QuestionType QuestionType { get; set; }
         public dynamic? AnsweredValue { get; set; }
 
     }

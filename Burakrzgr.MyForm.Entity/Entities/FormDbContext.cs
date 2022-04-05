@@ -87,14 +87,14 @@ namespace Burakrzgr.MyForm.Entity.Entities
 
             modelBuilder.Entity<SubmittedForm>(entity =>
             {
-                entity.ToTable("SubmitedForm");
+                entity.ToTable("SubmittedForm");
             });
 
             modelBuilder.Entity<SubmittedQuestionChoice>(entity =>
             {
                 entity.HasKey(e => new { e.SubmitedQuestionId, e.ChoiceId });
 
-                entity.ToTable("SubmitedQuestion_Choice");
+                entity.ToTable("SubmittedQuestion_Choice");
 
                 entity.HasIndex(e => new { e.SubmitedQuestionId, e.ChoiceId }, "SubmitedQuestion_Choice_unique")
                     .IsUnique();

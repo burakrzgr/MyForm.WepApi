@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Burakrzgr.MyForm.Business.QuestionManager
 {
-    public class QuestionConverter
+    public class QuestionTemplateConverter
     {
         public Question GetQuestion(QuestionTemplate template) 
         { 

@@ -14,11 +14,11 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         readonly IFormTemplate _formTemplate;
         readonly IOptionsTemplate _optionsTemplate;
         
-        readonly QuestionConverter _questionManager;
+        readonly QuestionTemplateConverter _questionManager;
 
         readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload};
 
-        public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionConverter questionManager,IOptionsTemplate optionsTemplate)
+        public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionTemplateConverter questionManager,IOptionsTemplate optionsTemplate)
         {
             _questionTemplate = questionTemplate;
             _formTemplate = formTemplate;
