@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Burakrzgr.MyForm.Business.QuestionManager;
 using Burakrzgr.MyForm.Data.Interfaces;
 using Burakrzgr.MyForm.Entity.Entities;
+using Burakrzgr.MyForm.Entity.Model.FormTemplate;
 using Burakrzgr.MyForm.Entity.Model.SubmittedForm;
 
 namespace Burakrzgr.MyForm.Business.FilledForm
@@ -15,13 +16,16 @@ namespace Burakrzgr.MyForm.Business.FilledForm
         readonly ISubmittedForm _submitedForm;
         readonly ISubmittedQuestion _submittedQuestion;
         readonly SubmittedQuestionConverter _converter;
+        readonly IOptionsTemplate _optionsTemplate;
         
-        readonly QuestionType[] NonAnswers = new QuestionType[] { QuestionType.Info};
-        public FilledFormManager(ISubmittedForm submitedForm, ISubmittedQuestion submittedQuestion, SubmittedQuestionConverter converter)
+      //  readonly QuestionType[] NonAnswers = new QuestionType[] { QuestionType.Info};
+      //  readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload };
+        public FilledFormManager(ISubmittedForm submitedForm, ISubmittedQuestion submittedQuestion, SubmittedQuestionConverter converter, IOptionsTemplate optionsTemplate)
         {
             _submitedForm = submitedForm;
             _submittedQuestion = submittedQuestion;
             _converter = converter;
+            _optionsTemplate = optionsTemplate;
         }
 
         public SubmitedFormModel GetForm(int id)
@@ -39,7 +43,9 @@ namespace Burakrzgr.MyForm.Business.FilledForm
                 {
                     int id = form.Data?.Id??0;
                     IList<SubmittedQuestion> questions = filledForm.Questions?.Where(x => x.QuestionType != QuestionType.Info).Select(x => _converter.GetSubmitted(x, id)).ToList()?? new List<SubmittedQuestion>();
-                    _submittedQuestion.Add(questions);
+                    _ = _submittedQuestion.Add(questions);
+                    OptionAnswerMerge[]? list = questions.Select(x => new OptionAnswerMerge { QuestionId = x.Id, Options = x.Choices ?? Array.Empty<string>() }).ToArray();
+                    _optionsTemplate.InsertOptionsToQuestion(list);
                 }
 
             }

@@ -11,6 +11,7 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     public interface IOptionsTemplate
     {
         public IResult<int> AddOptions(string[] options);
-        public IResult<int> MergeOptions(OptionAnswerMerge[] templates);
+        public IResult<int> InsertOptionToTemplate(OptionAnswerMerge[] templates);
+        public IResult<int> InsertOptionsToQuestion(OptionAnswerMerge[] submitted);
     }
 }

@@ -55,6 +55,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         question.Answer = model.AnsweredValue?.text??"";
                         break;
                     case QuestionType.RadioButton:
+                        question.Choices = model.AnsweredValue?.selected.ToObject<string[]>();
                         break;
                     case QuestionType.ComboBox:
                         question.Answer = model.AnsweredValue?.picked?? "";
@@ -70,6 +71,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         question.Answer = model.AnsweredValue?.stars;
                         break;
                     case QuestionType.Upload:
+                        question.Choices = model.AnsweredValue?.filePath.ToObject<string[]>();
                         break;
                     case QuestionType.Info:
                         break;

@@ -36,10 +36,19 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             }
         }
 
-        public IResult<int> MergeOptions(OptionAnswerMerge[] templates)
+        public IResult<int> InsertOptionsToQuestion(OptionAnswerMerge[] submitted)
         {
             var dbChoices = _factory.Choices;
-            IList<QuestionTemplateChoice> choicestemplates = templates.SelectMany(x => x.Options.Select(y => new { Id = x.QuestionId, option = y })).Join(dbChoices, x => x.option, y => y.ChoiceText, (x, y) => new QuestionTemplateChoice { ChoiceId = y.Id, QuestionTemplateId = x.Id }).ToList<QuestionTemplateChoice>();
+            IList<SubmittedQuestionChoice> insertList = submitted.SelectMany(x => x.Options.Select(y => new { Id = x.QuestionId, option = y })).Join(dbChoices, x => x.option, y => y.ChoiceText, (x, y) => new SubmittedQuestionChoice { ChoiceId = y.Id, SubmitedQuestionId = x.Id }).ToList();
+            _factory.SubmittedQuestionChoices.AddRange(insertList);
+            _factory.SaveChanges();
+            return new SuccessResult<int>(insertList.Count);
+        }
+
+        public IResult<int> InsertOptionToTemplate(OptionAnswerMerge[] templates)
+        {
+            var dbChoices = _factory.Choices;
+            IList<QuestionTemplateChoice> choicestemplates = templates.SelectMany(x => x.Options.Select(y => new { Id = x.QuestionId, option = y })).Join(dbChoices, x => x.option, y => y.ChoiceText, (x, y) => new QuestionTemplateChoice { ChoiceId = y.Id, QuestionTemplateId = x.Id }).ToList();
             _factory.QuestionTemplateChoices.AddRange(choicestemplates);
             _factory.SaveChanges();
             return new SuccessResult<int>(choicestemplates.Count);

@@ -34,9 +34,6 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
                 fm.Questions = questionTemplateList.Select(x => _questionManager.GetQuestion(x)).ToList();
                 var selectionQuestion = questionTemplateList.Where(x => _choiceQuestions.Contains(x.QuestionType)).ToList();
 
-
-
-
                 return fm;
             }
             else return new FormModal { Id = 9999, FormName = "error", FormDesc = "", DateofCreate = DateTime.Now, PersonalInfo = 0, Questions = new List<Question>() };
@@ -56,10 +53,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 
             IList<OptionAnswerMerge> merge = inserted.Data?.Where(x => _choiceQuestions.Contains(x.QuestionType)).Select(x => new OptionAnswerMerge { QuestionId = x.Id, Options = x.StrArray ?? Array.Empty<string>() }).ToList() ?? new List<OptionAnswerMerge>();
             _ = _optionsTemplate.AddOptions(merge.SelectMany(x => x.Options).ToArray());
-            _ = _optionsTemplate.MergeOptions(merge.ToArray());
-
-
-            //_optionsTemplate.AddOptions(form.Questions.)
+            _ = _optionsTemplate.InsertOptionToTemplate(merge.ToArray());
             return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message ?? "");
         }
     }
