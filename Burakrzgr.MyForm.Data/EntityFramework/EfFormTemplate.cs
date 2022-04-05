@@ -39,7 +39,7 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
         {
             EntityEntry<FormTemplate>? result = _factory.FormTemplates.Add(form);
             _factory.SaveChanges();
-            return result.State == EntityState.Added ? new SuccessResult<FormTemplate>(result.Entity) : new ErrorResult<FormTemplate>(result.Entity, "Db Error");
+            return (result.State == EntityState.Added || result.State == EntityState.Unchanged) ? new SuccessResult<FormTemplate>(result.Entity) : new ErrorResult<FormTemplate>(result.Entity, "Db Error");
         }
 
     }

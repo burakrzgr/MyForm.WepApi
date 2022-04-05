@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace Burakrzgr.MyForm.Data.EntityFramework
 {
@@ -24,7 +23,7 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
         {
             EntityEntry<SubmittedForm>? result = _factory.SubmittedForms.Add(form);
             _factory.SaveChanges();
-            return (result.State == EntityState.Added) ? new SuccessResult<SubmittedForm>(result.Entity) : new ErrorResult<SubmittedForm>(result.Entity, "Db Error");
+            return (result.State == EntityState.Added || result.State == EntityState.Unchanged) ? new SuccessResult<SubmittedForm>(result.Entity) : new ErrorResult<SubmittedForm>(result.Entity, "Db Error");
         }
     }
 }

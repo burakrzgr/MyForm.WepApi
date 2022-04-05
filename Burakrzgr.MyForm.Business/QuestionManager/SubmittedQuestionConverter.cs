@@ -47,7 +47,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
         {
             if (model != null)
             {
-                SubmittedQuestion? question = new() { Id = model.Id, SubmittedFormId = SubmittedFormId };
+                SubmittedQuestion? question = new() { Id = model.Id??0, SubmittedFormId = SubmittedFormId, QuestionTemplateId = model.TemplateId };
                 switch (model.QuestionType)
                 {
                     case QuestionType.Text:
