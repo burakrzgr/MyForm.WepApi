@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Business.FilledForm;
+﻿using Burakrzgr.MyForm.Business.Authentication;
+using Burakrzgr.MyForm.Business.FilledForm;
 using Burakrzgr.MyForm.Business.FormTemplate;
 using Burakrzgr.MyForm.Business.QuestionManager;
 using Burakrzgr.MyForm.Data.EntityFramework;
@@ -19,6 +20,7 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
                 .AddScoped<IOptionsTemplate, EfOptionsTemplate>()
                 .AddScoped<IFilledFormService, FilledFormManager>()
                 .AddScoped<ISubmittedForm, EfSubmittedForm>()
+                .AddScoped<IUserService, UserService>()
                 .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>();
 
             services
