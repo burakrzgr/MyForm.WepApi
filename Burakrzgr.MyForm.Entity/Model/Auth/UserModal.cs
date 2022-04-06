@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Entity.Model.Auth
 {
-    public class UserModel
+    public class UserModal
     {
         public int UserId { get; set; }
         public string UserName { get; set; }

@@ -14,17 +14,17 @@ namespace Burakrzgr.MyForm.Business.Authentication
 {
     public interface IUserService
     {
-        UserModel Authenticate(string kullaniciAdi, string sifre);
-        IEnumerable<UserModel> GetAll();
+        UserModal Authenticate(string kullaniciAdi, string sifre);
+        IEnumerable<UserModal> GetAll();
     }
 
     public class UserService : IUserService
     {
         // Kullanıcılar veritabanı yerine manuel olarak listede tutulamaktadır. Önerilen tabiki veritabanında hash lenmiş olarak tutmaktır.
-        private List<UserModel> _users = new List<UserModel>
+        private List<UserModal> _users = new List<UserModal>
         {
-            new UserModel { UserId = 1, UserName ="Burak" , Password ="1234" },
-            new UserModel { UserId = 1, UserName ="Test" , Password ="1234" }
+            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234" },
+            new UserModal { UserId = 1, UserName ="Test" , Password ="1234" }
         };
 
         private readonly string Secret = "secret-of-the-magic-is-your-imagination";
@@ -33,7 +33,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
         {
         }
 
-        public UserModel Authenticate(string kullaniciAdi, string sifre)
+        public UserModal Authenticate(string kullaniciAdi, string sifre)
         {
             var user = _users.SingleOrDefault(x => x.UserName == kullaniciAdi && x.Password == sifre);
 
@@ -62,7 +62,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
             return user;
         }
 
-        public IEnumerable<UserModel> GetAll()
+        public IEnumerable<UserModal> GetAll()
         {
             // Kullanicilar sifre olmadan dondurulur.
             return _users.Select(x => {
