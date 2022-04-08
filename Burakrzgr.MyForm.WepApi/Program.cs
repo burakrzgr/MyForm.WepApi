@@ -1,12 +1,14 @@
+using Burakrzgr.MyForm.Business.Authentication;
 using Burakrzgr.MyForm.Business.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-var key = Encoding.ASCII.GetBytes("secret-of-the-magic-is-your-imagination");
+var key = "secret-of-the-magic-is-your-imagination";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDependency();
+UserService.Secret = key;
 
 builder.Services.AddAuthentication(x =>
 {
@@ -20,7 +22,7 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
         ValidateIssuer = false,
         ValidateAudience = false
     };
@@ -42,6 +44,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

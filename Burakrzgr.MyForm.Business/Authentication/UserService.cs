@@ -23,11 +23,12 @@ namespace Burakrzgr.MyForm.Business.Authentication
         // Kullanıcılar veritabanı yerine manuel olarak listede tutulamaktadır. Önerilen tabiki veritabanında hash lenmiş olarak tutmaktır.
         private List<UserModal> _users = new List<UserModal>
         {
-            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234" },
-            new UserModal { UserId = 1, UserName ="Test" , Password ="1234" }
+            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234"},
+            new UserModal { UserId = 2, UserName ="Test" , Password ="1234" },
+            new UserModal { UserId = 2, UserName ="Admin" , Password ="1234" }
         };
 
-        private readonly string Secret = "secret-of-the-magic-is-your-imagination";
+        public static string Secret;
 
         public UserService()
         {
