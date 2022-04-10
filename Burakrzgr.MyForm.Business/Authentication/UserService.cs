@@ -51,12 +51,12 @@ namespace Burakrzgr.MyForm.Business.Authentication
                 {
                     new Claim(ClaimTypes.Name, user.UserId.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(5),
+                Expires = DateTime.UtcNow.AddHours(6),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.Token = tokenHandler.WriteToken(token);
-
+            user.TokenExpiration = DateTime.UtcNow.AddHours(5);
             // Sifre null olarak gonderilir.
             user.Password = null;
 

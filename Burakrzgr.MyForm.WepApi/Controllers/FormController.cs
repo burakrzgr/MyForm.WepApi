@@ -1,7 +1,9 @@
 ﻿using Burakrzgr.MyForm.Business.FormTemplate;
 using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Burakrzgr.MyForm.WepApi.Controllers
 {
@@ -30,18 +32,20 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             return _formService.GetFormList();
         }
 
-        [HttpPost, Route("{id}")]
-        public bool Post(int id)
-        {
-            return id == 5 ;
-        }
-        [HttpPut, Route("")]
+        //[HttpPost, Route("{id}")]
+        //public bool Post(int id)
+        //{
+        //    return id == 5 ;
+        //}
+      //  [Authorize]
+        [HttpPost, Route("")]
         public bool Put(Form form)
         {
             if (form is null)
             {
                 return false;
             }
+            var aa = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             _formService.PutForm(form);
 
             return true;
