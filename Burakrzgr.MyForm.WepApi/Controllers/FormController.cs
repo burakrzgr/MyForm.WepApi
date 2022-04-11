@@ -37,7 +37,8 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         //{
         //    return id == 5 ;
         //}
-      //  [Authorize]
+        //  [Authorize]
+        [Authorize]
         [HttpPost, Route("")]
         public bool Put(Form form)
         {
