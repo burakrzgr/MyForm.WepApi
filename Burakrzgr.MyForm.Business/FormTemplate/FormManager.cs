@@ -59,14 +59,13 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 
         public IResult<FormModal> DeleteForm(int id)
         {
-            _formTemplate.Delete(id);
-            var form = _formTemplate.Get(id);
+            var form =  _formTemplate.Delete(id);
             if (form != null)
             {
                 FormModal fm = new FormModal { Id = form.Id, FormName = form.FormName, FormDesc = form.FormDesc, DateofCreate = form.DateOfCreate, PersonalInfo = form.PersonalInfo };
                 return new SuccessResult<FormModal>(fm);
             }
-            return new ErrorResult<FormModal>(null, "Err:452 Couldn't find Form!");
+            return new ErrorResult<FormModal>(new FormModal(), "Err:452 Couldn't find Form!");
         }
     }
 }

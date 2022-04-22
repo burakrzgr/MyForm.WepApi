@@ -30,13 +30,14 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             if (formTemplate != null) {
                 formTemplate.Deleted = true;               
                 _factory.FormTemplates.Update(formTemplate); 
+                _factory.SaveChanges();
             }
             return formTemplate;
         }
 
         public IList<FormTemplate> GetAll()
         {
-            IList<FormTemplate> formTemplateList = _factory.FormTemplates.ToList();
+            IList<FormTemplate> formTemplateList = _factory.FormTemplates.Where(x => (!x.Deleted)).ToList();
             return formTemplateList;
         }
         public IResult<FormTemplate> Add(FormTemplate form)
