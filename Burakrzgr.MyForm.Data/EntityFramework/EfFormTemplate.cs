@@ -24,10 +24,14 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             FormTemplate? formTemplate = _factory.FormTemplates.SingleOrDefault(x => x.Id == id);
             return formTemplate;
         }
-        public FormTemplate? GetWithAnswer(int id)
+        public FormTemplate? Delete(int id)
         {
-            var formTemplateList = _factory.FormTemplates.Join(_factory.QuestionTemplates,x => x.Id,y => y.TemplateId,(x,y) => x ).Where(x => x.Id == id).ToList();
-            return formTemplateList.FirstOrDefault();
+            FormTemplate? formTemplate = _factory.FormTemplates.SingleOrDefault(x => x.Id == id);
+            if (formTemplate != null) {
+                formTemplate.Deleted = true;               
+                _factory.FormTemplates.Update(formTemplate); 
+            }
+            return formTemplate;
         }
 
         public IList<FormTemplate> GetAll()

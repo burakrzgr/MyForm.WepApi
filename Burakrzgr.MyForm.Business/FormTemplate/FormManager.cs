@@ -25,6 +25,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             _questionManager = questionManager;
             _optionsTemplate = optionsTemplate;
         }
+
         public FormModal GetForm(int id)
         {
             var form = _formTemplate.Get(id);
@@ -41,7 +42,6 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         public IList<FormModal> GetFormList()
         {
             var form = _formTemplate.GetAll();
-           
             return form.Select(x => new FormModal { Id = x.Id, FormName = x.FormName, FormDesc = x.FormDesc, DateofCreate = x.DateOfCreate, PersonalInfo = x.PersonalInfo }).ToList();
         }
 
@@ -55,6 +55,18 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
             _ = _optionsTemplate.AddOptions(merge.SelectMany(x => x.Options).ToArray());
             _ = _optionsTemplate.InsertOptionToTemplate(merge.ToArray());
             return result.IsSuccess ? new SuccessResult<FormModal>(form) : new ErrorResult<FormModal>(form, result.Message ?? "");
+        }
+
+        public IResult<FormModal> DeleteForm(int id)
+        {
+            _formTemplate.Delete(id);
+            var form = _formTemplate.Get(id);
+            if (form != null)
+            {
+                FormModal fm = new FormModal { Id = form.Id, FormName = form.FormName, FormDesc = form.FormDesc, DateofCreate = form.DateOfCreate, PersonalInfo = form.PersonalInfo };
+                return new SuccessResult<FormModal>(fm);
+            }
+            return new ErrorResult<FormModal>(null, "Err:452 Couldn't find Form!");
         }
     }
 }

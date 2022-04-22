@@ -11,5 +11,6 @@ namespace Burakrzgr.MyForm.Entity.Entities
         public int PersonalInfo { get; set; }
         public DateTime DateOfCreate { get; set; }
         public int CreatorId { get; set; }
+        public bool Deleted { get; set; }
     }
 }

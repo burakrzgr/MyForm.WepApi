@@ -1,4 +1,5 @@
 ﻿using Burakrzgr.MyForm.Business.FormTemplate;
+using Burakrzgr.MyForm.Core;
 using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using Microsoft.AspNetCore.Authorization;
@@ -32,13 +33,6 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             return _formService.GetFormList();
         }
 
-        //[HttpPost, Route("{id}")]
-        //public bool Post(int id)
-        //{
-        //    return id == 5 ;
-        //}
-        //  [Authorize]
-        [Authorize]
         [HttpPost, Route("")]
         public bool Put(Form form)
         {
@@ -46,7 +40,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             {
                 return false;
             }
-            var aa = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+           // var aa = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             _formService.PutForm(form);
 
             return true;
@@ -58,9 +52,10 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         }
 
         [HttpDelete, Route("{id}")]
-        public bool Delete(int id)
+        public IResult<Form> Delete(int id)
         {
-            return id == 6;
+            return _formService.DeleteForm(id);
+            //return id == 6;
         }
 
 

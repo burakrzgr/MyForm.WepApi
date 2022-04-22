@@ -14,5 +14,6 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         public FormModal GetForm(int id);
         public IList<FormModal> GetFormList();
         IResult<FormModal> PutForm(FormModal form);
+        IResult<FormModal> DeleteForm(int id);
     }
 }

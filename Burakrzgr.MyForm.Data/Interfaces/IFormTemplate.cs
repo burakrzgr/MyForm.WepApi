@@ -12,7 +12,7 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     {
         FormTemplate? Get(int id);
         IList<FormTemplate> GetAll();
-        FormTemplate? GetWithAnswer(int id);
+        FormTemplate? Delete(int id);
         IResult<FormTemplate> Add(FormTemplate form);
     }
 }
