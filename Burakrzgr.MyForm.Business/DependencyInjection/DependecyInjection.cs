@@ -22,7 +22,7 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
                 .AddScoped<IFilledFormService, FilledFormManager>()
                 .AddScoped<ISubmittedForm, EfSubmittedForm>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>().
+                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>()
                 .AddScoped<ICompletedFormService, CompletedFormManager>();
 
             services
