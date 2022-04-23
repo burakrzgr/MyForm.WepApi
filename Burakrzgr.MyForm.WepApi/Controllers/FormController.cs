@@ -4,6 +4,7 @@ using Burakrzgr.MyForm.Entity.Entities;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Burakrzgr.MyForm.WepApi.Controllers
@@ -40,9 +41,8 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             {
                 return false;
             }
-           // var aa = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            _formService.PutForm(form);
 
+            _formService.PutForm(form);
             return true;
         }
         [HttpPatch, Route("{id}")]
@@ -55,7 +55,6 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         public IResult<Form> Delete(int id)
         {
             return _formService.DeleteForm(id);
-            //return id == 6;
         }
 
 
