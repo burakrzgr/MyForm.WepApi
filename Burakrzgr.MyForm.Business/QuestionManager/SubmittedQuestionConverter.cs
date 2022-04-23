@@ -71,7 +71,7 @@ namespace Burakrzgr.MyForm.Business.QuestionManager
                         question.Answer = model.AnsweredValue?.stars;
                         break;
                     case QuestionType.Upload:
-                        question.Choices = model.AnsweredValue?.filePath.ToObject<string[]>();
+                        question.Choices = model.AnsweredValue?.filePath?.ToObject<string[]>() ?? Array.Empty<string>();
                         break;
                     case QuestionType.Info:
                         break;
