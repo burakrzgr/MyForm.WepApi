@@ -12,5 +12,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     public interface ISubmittedForm
     {
         IResult<SubmittedForm> Add(SubmittedForm form);
+        IResult<SubmittedForm> Get(int id);
     }
 }

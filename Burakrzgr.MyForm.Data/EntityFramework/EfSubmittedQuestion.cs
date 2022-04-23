@@ -37,5 +37,11 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
                 return new ErrorResult<IList<SubmittedQuestion>>(new List<SubmittedQuestion>(), "Db Error");
             }
         }
+
+        public IResult<IList<SubmittedQuestion>> Get(int id)
+        {
+            var list = _factory.SubmittedQuestions.Where(x => x.SubmittedFormId == id).ToList();
+            return new SuccessResult<IList<SubmittedQuestion>>(list);
+        }
     }
 }

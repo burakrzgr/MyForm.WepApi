@@ -19,13 +19,6 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             _formService = formService;
         }
 
-        [HttpGet, Route("{id}")]
-        public SubmitedFormModel Get(int id)
-        {
-            var result = _formService.GetForm(id);
-            return result;
-        }
-
         [HttpGet, Route("")]
         public IEnumerable<Form> GetList()
         {

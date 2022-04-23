@@ -10,6 +10,8 @@ namespace Burakrzgr.MyForm.Entity.Model.CompletedForm
     {
         public int Id { get; set; }
         public string? QuestionText { get; set; }
+        public string? QuestionDetail { get; set; }
         public QuestionType QuestionType { get; set; }
+        public string Answer { get; set; }
     }
 }

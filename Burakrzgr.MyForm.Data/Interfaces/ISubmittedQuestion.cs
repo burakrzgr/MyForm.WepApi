@@ -11,5 +11,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     public interface ISubmittedQuestion
     {
         public IResult<IList<SubmittedQuestion>> Add(IList<SubmittedQuestion>? questions);
+        public IResult<IList<SubmittedQuestion>> Get(int id);
     }
 }

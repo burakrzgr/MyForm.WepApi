@@ -28,16 +28,11 @@ namespace Burakrzgr.MyForm.Business.FilledForm
             _optionsTemplate = optionsTemplate;
         }
 
-        public SubmitedFormModel GetForm(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool SaveForm(SubmitedFormModel filledForm)
         {
             try
             {
-                SubmittedForm submitForm = new SubmittedForm { Id = filledForm.Id ?? 0, ParticipantId = 1, PerosnalInfoShared = filledForm.PerosnalInfoShared ?? false, TemplateId = filledForm.TemplateId};
+                SubmittedForm submitForm = new SubmittedForm { Id = filledForm.Id ?? 0, ParticipantId = 1, PersonalInfoShared = filledForm.PerosnalInfoShared ?? false, TemplateId = filledForm.TemplateId};
                 var form = _submitedForm.Add(submitForm);
                 if (form.IsSuccess)
                 {

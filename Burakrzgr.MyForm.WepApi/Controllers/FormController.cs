@@ -14,9 +14,9 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
     public class FormController : ControllerBase
     {
         private readonly ILogger<FormController> _logger;
-        private readonly IFormService _formService;
+        private readonly IFormTemplateService _formService;
 
-        public FormController(ILogger<FormController> logger, IFormService formService)
+        public FormController(ILogger<FormController> logger, IFormTemplateService formService)
         {
             _logger = logger;
             _formService = formService;

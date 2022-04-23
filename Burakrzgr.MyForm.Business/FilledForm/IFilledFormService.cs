@@ -11,6 +11,5 @@ namespace Burakrzgr.MyForm.Business.FilledForm
     public interface IFilledFormService
     {
         public bool SaveForm(FilledFormModel filledForm);
-        public FilledFormModel GetForm(int id);
     }
 }

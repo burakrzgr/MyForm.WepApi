@@ -25,5 +25,13 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
             _factory.SaveChanges();
             return (result.State == EntityState.Added || result.State == EntityState.Unchanged) ? new SuccessResult<SubmittedForm>(result.Entity) : new ErrorResult<SubmittedForm>(result.Entity, "Db Error");
         }
+
+        public IResult<SubmittedForm> Get(int id)
+        {
+            var item = _factory.SubmittedForms.FirstOrDefault(x => x.Id == id);
+            if (item == null)
+                return new ErrorResult<SubmittedForm>(new SubmittedForm(), "Cant Find Submitted Form with id:" + id);
+            return new SuccessResult<SubmittedForm>(item);
+        }
     }
 }

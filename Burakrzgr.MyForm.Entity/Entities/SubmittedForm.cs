@@ -8,6 +8,6 @@ namespace Burakrzgr.MyForm.Entity.Entities
         public int Id { get; set; }
         public int TemplateId { get; set; }
         public int ParticipantId { get; set; }
-        public bool PerosnalInfoShared { get; set; }
+        public bool PersonalInfoShared { get; set; }
     }
 }

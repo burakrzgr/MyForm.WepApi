@@ -8,7 +8,7 @@ namespace Burakrzgr.MyForm.Core
 {
     public class ErrorResult<T> : IResult<T>
     {
-        public ErrorResult(T data,string message)
+        public ErrorResult(T data, string message)
         {
             Data = data;
             Message = message;

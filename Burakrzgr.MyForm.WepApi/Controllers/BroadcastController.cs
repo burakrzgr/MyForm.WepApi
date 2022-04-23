@@ -9,9 +9,9 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
     public class BroadcastController : Controller
     {
         private readonly ILogger<FormController> _logger;
-        private readonly IFormService _formService;
+        private readonly IFormTemplateService _formService;
 
-        public BroadcastController(ILogger<FormController> logger, IFormService formService)
+        public BroadcastController(ILogger<FormController> logger, IFormTemplateService formService)
         {
             _logger = logger;
             _formService = formService;

@@ -9,7 +9,7 @@ using FormModal = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {
-    public interface IFormService
+    public interface IFormTemplateService
     {
         public FormModal GetForm(int id);
         public IList<FormModal> GetFormList();

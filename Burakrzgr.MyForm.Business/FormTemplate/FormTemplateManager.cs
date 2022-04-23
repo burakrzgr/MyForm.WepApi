@@ -9,7 +9,7 @@ using Burakrzgr.MyForm.Business.Authentication;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {
-    public class FormManager : IFormService
+    public class FormTemplateManager : IFormTemplateService
     {
         readonly IQuestionTemplate _questionTemplate;
         readonly IFormTemplate _formTemplate;
@@ -19,7 +19,7 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 
         readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload};
 
-        public FormManager(IQuestionTemplate questionTemplate, IFormTemplate formTemplate, QuestionTemplateConverter questionManager, IOptionsTemplate optionsTemplate, IUserService userService)
+        public FormTemplateManager(IQuestionTemplate questionTemplate, IFormTemplate formTemplate, QuestionTemplateConverter questionManager, IOptionsTemplate optionsTemplate, IUserService userService)
         {
             _questionTemplate = questionTemplate;
             _formTemplate = formTemplate;

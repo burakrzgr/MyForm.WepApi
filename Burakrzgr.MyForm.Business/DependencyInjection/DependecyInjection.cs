@@ -1,4 +1,5 @@
 ﻿using Burakrzgr.MyForm.Business.Authentication;
+using Burakrzgr.MyForm.Business.Completed;
 using Burakrzgr.MyForm.Business.FilledForm;
 using Burakrzgr.MyForm.Business.FormTemplate;
 using Burakrzgr.MyForm.Business.QuestionManager;
@@ -14,14 +15,15 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
         public static IServiceCollection AddDependency(this IServiceCollection services)
         {
             services
-                .AddScoped<IFormService, FormManager>()
+                .AddScoped<IFormTemplateService, FormTemplateManager>()
                 .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
                 .AddScoped<IFormTemplate, EfFormTemplate>()
                 .AddScoped<IOptionsTemplate, EfOptionsTemplate>()
                 .AddScoped<IFilledFormService, FilledFormManager>()
                 .AddScoped<ISubmittedForm, EfSubmittedForm>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>();
+                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>().
+                .AddScoped<ICompletedFormService, CompletedFormManager>();
 
             services
                 .AddSingleton<FormDbContext>()
