@@ -10,5 +10,6 @@ namespace Burakrzgr.MyForm.Business.Completed
     public interface ICompletedFormService
     {
         public CompletedFormModel GetForm(int id);
+        public IList<CompletedFormModel> GetFormList();
     }
 }

@@ -33,5 +33,10 @@ namespace Burakrzgr.MyForm.Data.EntityFramework
                 return new ErrorResult<SubmittedForm>(new SubmittedForm(), "Cant Find Submitted Form with id:" + id);
             return new SuccessResult<SubmittedForm>(item);
         }
+
+        public IResult<IList<SubmittedForm>> GetList()
+        {
+            return new SuccessResult<IList<SubmittedForm>>(_factory.SubmittedForms.ToList());
+        }
     }
 }

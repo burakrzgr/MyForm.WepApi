@@ -22,5 +22,12 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
             return result;
         }
 
+        [HttpGet, Route("")]
+        public IList<CompletedFormModel> GetList()
+        {
+            var result = _completedFormService.GetFormList();
+            return result;
+        }
+
     }
 }

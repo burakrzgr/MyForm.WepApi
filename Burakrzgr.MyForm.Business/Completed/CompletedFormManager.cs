@@ -66,5 +66,25 @@ namespace Burakrzgr.MyForm.Business.Completed
             }
 
         }
+
+        public IList<CompletedFormModel> GetFormList()
+        {
+            var res = _submitedForm.GetList();
+            if (res.IsSuccess && res.Data is not null) 
+            {
+                var fTemplate = _formTemplate.GetAll();
+                return res.Data.Join(fTemplate, form => form.TemplateId, tmp => tmp.Id ,(form,tmp) => new CompletedFormModel
+                {
+                    Id = form.Id,
+                    PersonalInfoShared = form.PersonalInfoShared,
+                    SubmitterUser = form.PersonalInfoShared ? new UserModal { UserId = form.ParticipantId } : null,
+                    FormName = tmp.FormName,
+                    FormDesc = tmp.FormDesc,
+                    SubmitDate = DateTime.Now,
+                    CreatorUser = new UserModal { UserId = tmp.CreatorId }
+                }).ToList();
+            }
+            return new List<CompletedFormModel>();
+        }
     }
 }

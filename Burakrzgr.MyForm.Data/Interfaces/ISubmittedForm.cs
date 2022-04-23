@@ -13,5 +13,6 @@ namespace Burakrzgr.MyForm.Data.Interfaces
     {
         IResult<SubmittedForm> Add(SubmittedForm form);
         IResult<SubmittedForm> Get(int id);
+        IResult<IList<SubmittedForm>> GetList();
     }
 }
