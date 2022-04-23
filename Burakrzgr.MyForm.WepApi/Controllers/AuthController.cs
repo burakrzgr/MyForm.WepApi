@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Burakrzgr.MyForm.WepApi.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AuthController : ControllerBase
@@ -17,7 +16,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         {
             _userService = userService;
         }
-        [AllowAnonymous]
+
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserModal userParam)
         {

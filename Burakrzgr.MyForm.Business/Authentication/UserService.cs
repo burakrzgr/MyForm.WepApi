@@ -17,7 +17,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
     public interface IUserService
     {
         UserModal Authenticate(string kullaniciAdi, string sifre);
-        UserModal TokenToUser(JwtSecurityToken jwt);
+        UserModal TokenToUser();
         IEnumerable<UserModal> GetAll();
     }
 
@@ -27,7 +27,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
         // Kullanıcılar veritabanı yerine manuel olarak listede tutulamaktadır. Önerilen tabiki veritabanında hash lenmiş olarak tutmaktır.
         private List<UserModal> _users = new List<UserModal>
         {
-            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234"},
+            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234", Roles = new []{ RoleType.Developer.ToString(), "Admin", "Creator", "Broadcaster","Participant" } },
             new UserModal { UserId = 2, UserName ="Test" , Password ="1234" },
             new UserModal { UserId = 2, UserName ="Admin" , Password ="1234" }
         };
@@ -78,18 +78,18 @@ namespace Burakrzgr.MyForm.Business.Authentication
             });
         }
 
-        public UserModal TokenToUser(JwtSecurityToken jwt)
+        public UserModal TokenToUser()
         {
-            var accessToken = _accessor.HttpContext?.Response.Headers["Authorization"].ToString();
+            var accessToken = _accessor.HttpContext?.Request.Headers["Authorization"].ToString();
             if (string.IsNullOrEmpty(accessToken))
             {
-                return new UserModal { UserId = 0, Roles = new[] { "Anonymous" } };
+                return new UserModal { UserId = 0, Roles = new[] { RoleType.Anonymous.ToString() } };
             }
 
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(accessToken.ToString().Replace("Bearer ", string.Empty));
-            Claim User = jwtSecurityToken.Claims.First(claim => claim.Type == ClaimTypes.Name);
-            Claim Roles = jwtSecurityToken.Claims.First(claim => claim.Type == ClaimTypes.Role);
+            Claim User = jwtSecurityToken.Claims.First(claim => claim.Type == "name");
+            Claim Roles = jwtSecurityToken.Claims.First(claim => claim.Type == "role");
 
             return new UserModal { UserId = int.Parse(User.Value), Roles = Roles.Value.Split(';') };
         }

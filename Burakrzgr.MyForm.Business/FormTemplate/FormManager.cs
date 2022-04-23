@@ -5,6 +5,7 @@ using Burakrzgr.MyForm.Entity.Model;
 using FormTemplateEntity = Burakrzgr.MyForm.Entity.Entities.FormTemplate;
 using FormModal = Burakrzgr.MyForm.Entity.Model.FormTemplate.FormTemplate.Form;
 using Burakrzgr.MyForm.Entity.Model.FormTemplate;
+using Burakrzgr.MyForm.Business.Authentication;
 
 namespace Burakrzgr.MyForm.Business.FormTemplate
 {
@@ -13,17 +14,18 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
         readonly IQuestionTemplate _questionTemplate;
         readonly IFormTemplate _formTemplate;
         readonly IOptionsTemplate _optionsTemplate;
-        
+        readonly IUserService _userService;
         readonly QuestionTemplateConverter _questionManager;
 
         readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload};
 
-        public FormManager(IQuestionTemplate questionTemplate,IFormTemplate formTemplate, QuestionTemplateConverter questionManager,IOptionsTemplate optionsTemplate)
+        public FormManager(IQuestionTemplate questionTemplate, IFormTemplate formTemplate, QuestionTemplateConverter questionManager, IOptionsTemplate optionsTemplate, IUserService userService)
         {
             _questionTemplate = questionTemplate;
             _formTemplate = formTemplate;
             _questionManager = questionManager;
             _optionsTemplate = optionsTemplate;
+            _userService = userService;
         }
 
         public FormModal GetForm(int id)
@@ -47,6 +49,8 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
 
         public IResult<FormModal> PutForm(FormModal form)
         {
+            _userService.TokenToUser();
+
             IResult<FormTemplateEntity>? result = _formTemplate.Add(form: new FormTemplateEntity() { Id = form.Id, FormName = form.FormName ?? "", FormDesc = form.FormDesc ?? "", DateOfCreate = form.DateofCreate ?? DateTime.Now, PersonalInfo = form.PersonalInfo ?? 0 });
             form.Id = result.Data is null ? 0 : result.Data.Id;
             var inserted = _questionTemplate.Add(form.Questions?.Select(x => _questionManager.GetTemplate(x, form.Id)).ToList());

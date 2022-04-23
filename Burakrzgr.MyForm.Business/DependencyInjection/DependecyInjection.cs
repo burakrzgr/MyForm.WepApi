@@ -26,7 +26,8 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
             services
                 .AddSingleton<FormDbContext>()
                 .AddSingleton<QuestionTemplateConverter>()
-                .AddSingleton<SubmittedQuestionConverter>();
+                .AddSingleton<SubmittedQuestionConverter>()
+                .AddHttpContextAccessor();
             return services;
         }
 
