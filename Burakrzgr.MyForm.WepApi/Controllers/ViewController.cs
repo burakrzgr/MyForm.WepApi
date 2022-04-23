@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Burakrzgr.MyForm.WepApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ViewController : Controller
     {
