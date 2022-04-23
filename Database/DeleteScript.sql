@@ -1,0 +1,10 @@
+﻿delete Choice
+delete FormBroadcast
+delete FormTemplate
+delete QuestionTemplate
+delete QuestionTemplate_Choice
+delete SubmittedForm
+delete SubmittedQuestion
+delete SubmittedQuestion_Choice
+delete UploadedFile
+
