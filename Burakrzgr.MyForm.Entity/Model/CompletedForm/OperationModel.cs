@@ -11,5 +11,6 @@ namespace Burakrzgr.MyForm.Entity.Model.CompletedForm
         public int Id { get; set; }
         public int FormId { get; set; }
         public OperationType OperationType { get; set; }
+        public ConclutionType ConclutionType { get; set; }
     }
 }
