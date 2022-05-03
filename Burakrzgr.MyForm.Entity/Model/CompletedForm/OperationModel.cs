@@ -14,5 +14,7 @@ namespace Burakrzgr.MyForm.Entity.Model.CompletedForm
         public ConclutionType ConclutionType { get; set; }
         public int TargetId { get; set; }
         public int CreatorId { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime? ConclutionDate { get; set; }
     }
 }
