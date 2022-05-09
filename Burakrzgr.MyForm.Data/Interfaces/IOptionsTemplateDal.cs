@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {
-    public interface IOptionsTemplate
+    public interface IOptionsTemplateDal
     {
         public IResult<int> AddOptions(string[] options);
         public IResult<int> InsertOptionToTemplate(OptionAnswerMerge[] templates);

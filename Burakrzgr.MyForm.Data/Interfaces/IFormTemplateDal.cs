@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.Interfaces
 {
-    public interface IFormTemplate
+    public interface IFormTemplateDal
     {
         FormTemplate? Get(int id);
         IList<FormTemplate> GetAll();

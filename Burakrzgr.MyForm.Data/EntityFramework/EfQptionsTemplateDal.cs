@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace Burakrzgr.MyForm.Data.EntityFramework
 {
-    public class EfOptionsTemplate : IOptionsTemplate
+    public class EfOptionsTemplateDal : IOptionsTemplateDal
     {
         FormDbContext _factory;
-        public EfOptionsTemplate(FormDbContext factory)
+        public EfOptionsTemplateDal(FormDbContext factory)
         {
             _factory = factory;
         }

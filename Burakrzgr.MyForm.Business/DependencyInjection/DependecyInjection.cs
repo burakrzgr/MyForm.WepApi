@@ -17,13 +17,14 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
             services
                 .AddScoped<IFormTemplateService, FormTemplateManager>()
                 .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
-                .AddScoped<IFormTemplate, EfFormTemplate>()
-                .AddScoped<IOptionsTemplate, EfOptionsTemplate>()
+                .AddScoped<IFormTemplateDal, EfFormTemplateDal>()
+                .AddScoped<IOptionsTemplateDal, EfOptionsTemplateDal>()
                 .AddScoped<IFilledFormService, FilledFormManager>()
                 .AddScoped<ISubmittedForm, EfSubmittedForm>()
                 .AddScoped<IUserService, UserService>()
                 .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>()
-                .AddScoped<ICompletedFormService, CompletedFormManager>();
+                .AddScoped<ICompletedFormService, CompletedFormManager>()
+                .AddScoped<IOperationDal, EfOperationDal>();
 
             services
                 .AddSingleton<FormDbContext>()

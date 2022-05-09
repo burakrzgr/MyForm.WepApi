@@ -12,14 +12,14 @@ namespace Burakrzgr.MyForm.Business.FormTemplate
     public class FormTemplateManager : IFormTemplateService
     {
         readonly IQuestionTemplate _questionTemplate;
-        readonly IFormTemplate _formTemplate;
-        readonly IOptionsTemplate _optionsTemplate;
+        readonly IFormTemplateDal _formTemplate;
+        readonly IOptionsTemplateDal _optionsTemplate;
         readonly IUserService _userService;
         readonly QuestionTemplateConverter _questionManager;
 
         readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload};
 
-        public FormTemplateManager(IQuestionTemplate questionTemplate, IFormTemplate formTemplate, QuestionTemplateConverter questionManager, IOptionsTemplate optionsTemplate, IUserService userService)
+        public FormTemplateManager(IQuestionTemplate questionTemplate, IFormTemplateDal formTemplate, QuestionTemplateConverter questionManager, IOptionsTemplateDal optionsTemplate, IUserService userService)
         {
             _questionTemplate = questionTemplate;
             _formTemplate = formTemplate;

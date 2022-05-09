@@ -16,11 +16,11 @@ namespace Burakrzgr.MyForm.Business.FilledForm
         readonly ISubmittedForm _submitedForm;
         readonly ISubmittedQuestion _submittedQuestion;
         readonly SubmittedQuestionConverter _converter;
-        readonly IOptionsTemplate _optionsTemplate;
+        readonly IOptionsTemplateDal _optionsTemplate;
         
       //  readonly QuestionType[] NonAnswers = new QuestionType[] { QuestionType.Info};
       //  readonly int[] _choiceQuestions = new int[] { (int)QuestionType.RadioButton, (int)QuestionType.ComboBox, (int)QuestionType.Upload };
-        public FilledFormManager(ISubmittedForm submitedForm, ISubmittedQuestion submittedQuestion, SubmittedQuestionConverter converter, IOptionsTemplate optionsTemplate)
+        public FilledFormManager(ISubmittedForm submitedForm, ISubmittedQuestion submittedQuestion, SubmittedQuestionConverter converter, IOptionsTemplateDal optionsTemplate)
         {
             _submitedForm = submitedForm;
             _submittedQuestion = submittedQuestion;
