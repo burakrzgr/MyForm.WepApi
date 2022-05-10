@@ -10,5 +10,6 @@ namespace Burakrzgr.MyForm.Business.History
     public interface IHistoryService
     {
         public IList<OperationModel> GetOperationList();
+        public bool AddOperation(OperationModel operation);
     }
 }
