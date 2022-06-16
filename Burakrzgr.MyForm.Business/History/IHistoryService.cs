@@ -1,4 +1,5 @@
-﻿using Burakrzgr.MyForm.Entity.Model.CompletedForm;
+﻿using Burakrzgr.MyForm.Core;
+using Burakrzgr.MyForm.Entity.Model.CompletedForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace Burakrzgr.MyForm.Business.History
     {
         public IList<OperationModel> GetOperationList();
         public bool AddOperation(OperationModel operation);
+        public SuccessResult<string> RedirectToUser(int formId, int userId);
+        public SuccessResult<IList<string>> GetRedirectableUser(int formId);
     }
 }
