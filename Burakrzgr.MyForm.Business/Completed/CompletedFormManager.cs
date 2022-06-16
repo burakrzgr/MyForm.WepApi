@@ -50,11 +50,11 @@ namespace Burakrzgr.MyForm.Business.Completed
                 {
                     Id = form.Id,
                     PersonalInfoShared = form.PersonalInfoShared,
-                    SubmitterUser = form.PersonalInfoShared ? new UserModal { UserId = form.ParticipantId } : null,
+                    SubmitterUser = form.PersonalInfoShared ? new UserModel { UserId = form.ParticipantId } : null,
                     FormName = fTemplate.FormName,
                     FormDesc = fTemplate.FormDesc,
                     SubmitDate = DateTime.Now,
-                    CreatorUser = new UserModal { UserId = fTemplate.CreatorId },
+                    CreatorUser = new UserModel { UserId = fTemplate.CreatorId },
                     CompletedQuestions = completedAnswers,
                 };
 
@@ -77,11 +77,11 @@ namespace Burakrzgr.MyForm.Business.Completed
                 {
                     Id = form.Id,
                     PersonalInfoShared = form.PersonalInfoShared,
-                    SubmitterUser = form.PersonalInfoShared ? new UserModal { UserId = form.ParticipantId } : null,
+                    SubmitterUser = form.PersonalInfoShared ? new UserModel { UserId = form.ParticipantId } : null,
                     FormName = tmp.FormName,
                     FormDesc = tmp.FormDesc,
                     SubmitDate = DateTime.Now,
-                    CreatorUser = new UserModal { UserId = tmp.CreatorId }
+                    CreatorUser = new UserModel { UserId = tmp.CreatorId }
                 }).ToList();
             }
             return new List<CompletedFormModel>();

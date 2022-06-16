@@ -13,9 +13,9 @@ namespace Burakrzgr.MyForm.Entity.Model.CompletedForm
         public string? FormName { get; set; }
         public string? FormDesc { get; set; }
         public DateTime SubmitDate { get; set; } 
-        public UserModal? CreatorUser { get; set; }
+        public UserModel? CreatorUser { get; set; }
         public bool PersonalInfoShared { get; set; }
-        public UserModal? SubmitterUser { get; set; }
+        public UserModel? SubmitterUser { get; set; }
         public IList<CompletedQuestion>? CompletedQuestions { get; set; }
 
 

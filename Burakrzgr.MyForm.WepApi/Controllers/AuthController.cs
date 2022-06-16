@@ -18,12 +18,12 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         }
 
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] UserModal userParam)
+        public IActionResult Login([FromBody] UserModel userParam)
         {
             var user = _userService.Authenticate(userParam.UserName, userParam.Password);
             if (user == null)
-                return Ok(new ErrorResult<UserModal>(null, "Username or password is incorrect!"));
-            return Ok(new SuccessResult<UserModal>(user));
+                return Ok(new ErrorResult<UserModel>(null, "Username or password is incorrect!"));
+            return Ok(new SuccessResult<UserModel>(user));
         }
         [HttpGet]
         public IActionResult GetAll()

@@ -16,20 +16,20 @@ namespace Burakrzgr.MyForm.Business.Authentication
 {
     public interface IUserService
     {
-        UserModal Authenticate(string kullaniciAdi, string sifre);
-        UserModal TokenToUser();
-        IEnumerable<UserModal> GetAll();
+        UserModel Authenticate(string kullaniciAdi, string sifre);
+        UserModel TokenToUser();
+        IEnumerable<UserModel> GetAll();
     }
 
     public class UserService : IUserService
     {
         HttpContextAccessor _accessor;
         // Kullanıcılar veritabanı yerine manuel olarak listede tutulamaktadır. Önerilen tabiki veritabanında hash lenmiş olarak tutmaktır.
-        private List<UserModal> _users = new List<UserModal>
+        private List<UserModel> _users = new List<UserModel>
         {
-            new UserModal { UserId = 1, UserName ="Burak" , Password ="1234", Roles = new []{ RoleType.Developer.ToString(), "Admin", "Creator", "Broadcaster","Participant" } },
-            new UserModal { UserId = 2, UserName ="Test" , Password ="1234" },
-            new UserModal { UserId = 2, UserName ="Admin" , Password ="1234" }
+            new UserModel { UserId = 1, UserName ="Burak" , Password ="1234", Roles = new []{ RoleType.Developer.ToString(), "Admin", "Creator", "Broadcaster","Participant" } },
+            new UserModel { UserId = 2, UserName ="Test" , Password ="1234" },
+            new UserModel { UserId = 2, UserName ="Admin" , Password ="1234" }
         };
 
         public static string Secret;
@@ -39,7 +39,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
             _accessor = new HttpContextAccessor();
         }
 
-        public UserModal Authenticate(string kullaniciAdi, string sifre)
+        public UserModel Authenticate(string kullaniciAdi, string sifre)
         {
             var user = _users.SingleOrDefault(x => x.UserName == kullaniciAdi && x.Password == sifre);
 
@@ -69,7 +69,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
             return user;
         }
 
-        public IEnumerable<UserModal> GetAll()
+        public IEnumerable<UserModel> GetAll()
         {
             // Kullanicilar sifre olmadan dondurulur.
             return _users.Select(x => {
@@ -78,12 +78,12 @@ namespace Burakrzgr.MyForm.Business.Authentication
             });
         }
 
-        public UserModal TokenToUser()
+        public UserModel TokenToUser()
         {
             var accessToken = _accessor.HttpContext?.Request.Headers["Authorization"].ToString();
             if (string.IsNullOrEmpty(accessToken))
             {
-                return new UserModal { UserId = 0, Roles = new[] { RoleType.Anonymous.ToString() } };
+                return new UserModel { UserId = 0, Roles = new[] { RoleType.Anonymous.ToString() } };
             }
 
             var handler = new JwtSecurityTokenHandler();
@@ -91,7 +91,7 @@ namespace Burakrzgr.MyForm.Business.Authentication
             Claim User = jwtSecurityToken.Claims.First(claim => claim.Type == "name");
             Claim Roles = jwtSecurityToken.Claims.First(claim => claim.Type == "role");
 
-            return new UserModal { UserId = int.Parse(User.Value), Roles = Roles.Value.Split(';') };
+            return new UserModel { UserId = int.Parse(User.Value), Roles = Roles.Value.Split(';') };
         }
     }
 }
