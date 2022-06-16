@@ -14,7 +14,7 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         IHistoryService _historyService;
         public OperationController(IHistoryService historyService)
         {
-           
+           _historyService = historyService;
         }
 
         [HttpGet, Route("{formId}")]

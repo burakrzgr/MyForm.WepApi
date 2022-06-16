@@ -2,6 +2,7 @@
 using Burakrzgr.MyForm.Business.Completed;
 using Burakrzgr.MyForm.Business.FilledForm;
 using Burakrzgr.MyForm.Business.FormTemplate;
+using Burakrzgr.MyForm.Business.History;
 using Burakrzgr.MyForm.Business.QuestionManager;
 using Burakrzgr.MyForm.Data.EntityFramework;
 using Burakrzgr.MyForm.Data.Interfaces;
@@ -16,14 +17,16 @@ namespace Burakrzgr.MyForm.Business.DependencyInjection
         {
             services
                 .AddScoped<IFormTemplateService, FormTemplateManager>()
-                .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
-                .AddScoped<IFormTemplateDal, EfFormTemplateDal>()
-                .AddScoped<IOptionsTemplateDal, EfOptionsTemplateDal>()
                 .AddScoped<IFilledFormService, FilledFormManager>()
-                .AddScoped<ISubmittedForm, EfSubmittedForm>()
                 .AddScoped<IUserService, UserService>()
-                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>()
                 .AddScoped<ICompletedFormService, CompletedFormManager>()
+                .AddScoped<IHistoryService, HistoryManager>()
+
+                .AddScoped<IOptionsTemplateDal, EfOptionsTemplateDal>()
+                .AddScoped<IFormTemplateDal, EfFormTemplateDal>()
+                .AddScoped<ISubmittedQuestion, EfSubmittedQuestion>()
+                .AddScoped<ISubmittedForm, EfSubmittedForm>()
+                .AddScoped<IQuestionTemplate, EfQuestionTemplate>()
                 .AddScoped<IOperationDal, EfOperationDal>();
 
             services
