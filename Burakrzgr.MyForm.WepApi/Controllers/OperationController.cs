@@ -26,14 +26,14 @@ namespace Burakrzgr.MyForm.WepApi.Controllers
         [HttpPost, Route("{formId}/Redirect/{userId}")]
         public IResult<string> RedirectToUser(int formId,int userId)
         {
-            SuccessResult<string>? res = _historyService.RedirectToUser(formId, userId);
+            SuccessResult<string> res = _historyService.RedirectToUser(formId, userId);
             return res;
         }
 
         [HttpGet, Route("{formId}/Users")]
         public IResult<IList<string>> GetRedirectableUser(int formId)
         {
-            SuccessResult<IList<string>>? res = _historyService.GetRedirectableUser(formId);
+            SuccessResult<IList<string>> res = _historyService.GetRedirectableUser(formId);
             return res; 
         }
 
